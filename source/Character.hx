@@ -139,6 +139,29 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
+
+			case 'tankman':
+				tex = Paths.getSparrowAtlas('tankmanCaptain');
+				frames = tex;
+				animation.addByPrefix('idle', 'Tankman Idle Dance instance 1', 24);
+				animation.addByPrefix('singUP', 'Tankman UP note instance 1', 24);
+				animation.addByPrefix('singRIGHT', 'Tankman Note Left instance 1', 24);
+				animation.addByPrefix('singDOWN', 'Tankman DOWN note instance 1', 24);
+				//wait its left but right so is it right left or up ILKGTJHKTNBGIKUJTGRHTKJHHJNTGUJKTERMHNTHRUIOJKTRHNOIKLGRHJN
+				animation.addByPrefix('singLEFT', 'Tankman Right Note instance 1', 24);
+				animation.addByPrefix('PRETTY-GOOD', 'PRETTY GOOD tankman instance 1', 24);
+				animation.addByPrefix('singUP-alt', 'TANKMAN UGH instance 1', 24);
+
+				addOffset('idle');
+				addOffset("singUP", -6, 50);
+				addOffset("singRIGHT", 0, 27);
+				addOffset("singLEFT", -10, 10);
+				addOffset("singDOWN", 0, -30);
+				addOffset('PRETTY-GOOD');
+				addOffset("singUP-alt", -6, 50);
+
+				flipX = true;
+				playAnim('idle');
 			case 'spooky':
 				tex = Paths.getSparrowAtlas('spooky_kids_assets');
 				frames = tex;
