@@ -82,10 +82,6 @@ class PlayState extends MusicBeatState
 	private var health:Float = 1;
 	private var combo:Int = 0;
 	private var misses:Int = 0;
-	private var sicks:Int = 0;
-	private var bads:Int = 0;
-	private var goods:Int = 0;
-	private var shits:Int = 0;
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -121,7 +117,6 @@ class PlayState extends MusicBeatState
 	var talking:Bool = true;
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
-	var judgementCounter:FlxText;
 	var SETxt:FlxText;
 	var ver = "v" + Application.current.meta.get('version');
 
@@ -782,15 +777,6 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(0xFF7BD6F6, 0xFF31B0D1);
 		add(healthBar);
 
-		judgementCounter = new FlxText(20, 0, 0, "", 20);
-        judgementCounter.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, FlxTextAlign.LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-        judgementCounter.borderSize = 2;
-        judgementCounter.borderQuality = 2;
-        judgementCounter.scrollFactor.set();
-        judgementCounter.cameras = [camHUD];
-        judgementCounter.screenCenter(Y);
-    	add(judgementCounter);
-
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 454, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
@@ -1430,7 +1416,6 @@ class PlayState extends MusicBeatState
 
 		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses;  //score misss and combo info
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText; //song and engine info
-		judgementCounter.text ='Sicks: ' + sicks + '\nGoods: ' + goods + '\nBads: ' + bads + '\nShits: ' + shits + '\nScore: ' + songScore;
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1883,26 +1868,21 @@ class PlayState extends MusicBeatState
 		var score:Int = 350;
 
 		var daRating:String = "sick";
-		sicks += 1;
-		
 
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			daRating = 'shit';
 			score = 50;
-			shits += 1;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
 			score = 100;
-			bads += 1;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
 			score = 200;
-			goods += 1;
 		}
 
 		songScore += score;
