@@ -1,4 +1,4 @@
-# Friday Night Funkin
+# Friday Night Funkin Dike Engine
 
 This is the repository for Friday Night Funkin (dike engine lol), a game originally made for Ludum Dare 47 "Stuck In a Loop".
 
