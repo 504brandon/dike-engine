@@ -1418,7 +1418,7 @@ class PlayState extends MusicBeatState
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText; //song and engine info
 
 		//code to the rateings god this took me 3 hours to get working and it still isnt working propperly😭
-				
+
 		if (misses > 1)
 
 		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
@@ -1457,43 +1457,43 @@ class PlayState extends MusicBeatState
 
 		if (misses > 10)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 11)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 12)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 13)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 14)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 15)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 16)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 17)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 18)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 19)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNG';  //PRETTY GOOD BUT NOT GOOD idk ok
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 20)
 
