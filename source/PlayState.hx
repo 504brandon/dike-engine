@@ -1414,15 +1414,11 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | Clear';  //score misss and combo info
+		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText; //song and engine info
 
 		//code to the rateings god this took me 3 hours to get working and it still isnt working propperly😭
-
-		if (misses > 0)
-
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //full combo
-
+				
 		if (misses > 1)
 
 		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
