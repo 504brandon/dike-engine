@@ -61,6 +61,7 @@ class PlayState extends MusicBeatState
 	private var dad:Character;
 	private var gf:Character;
 	private var boyfriend:Boyfriend;
+	private var tankman:Character;
 
 	private var notes:FlxTypedGroup<Note>;
 	private var unspawnNotes:Array<Note> = [];
@@ -2536,6 +2537,65 @@ class PlayState extends MusicBeatState
 		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
 		{
 			// dad.dance();
+		}
+		if (dad.curCharacter == 'garcellodead' && SONG.song.toLowerCase() == 'release')
+		{
+			if (curStep == 838)
+			{
+				dad.playAnim('garTightBars', true);
+			}
+		}
+
+//tankman lirics code
+
+		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'stress')
+		{
+			if (curStep == 735)
+			{
+				dad.playAnim('PRETTY-GOOD', true);
+			}
+		}
+
+		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
+		{
+			if (curStep == 60)
+			{
+				dad.playAnim('UGH', true);
+			}
+		}
+
+		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
+		{
+			if (curStep == 444)
+			{
+				dad.playAnim('UGH', true);
+			}
+		}
+
+		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
+		{
+			if (curStep == 828)
+			{
+				dad.playAnim('UGH', true);
+			}
+		}
+
+//fsm i needed to copy this code from smos or the game wont compile lol
+		if (dad.curCharacter == 'dad' && SONG.song.toLowerCase() == 'mlif')
+		{
+			if (curStep == 240)
+			{
+				new FlxTimer().start(0.1, function(tmr:FlxTimer)
+				{
+					dad.alpha -= 0.05;
+					iconP2.alpha -= 0.05;
+
+					if (dad.alpha > 0)
+					{
+						tmr.reset(0.1);
+					}
+				});
+			}
 		}
 	}
 

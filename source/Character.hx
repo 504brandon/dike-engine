@@ -150,7 +150,7 @@ class Character extends FlxSprite
 				//wait its left but right so is it right left or up ILKGTJHKTNBGIKUJTGRHTKJHHJNTGUJKTERMHNTHRUIOJKTRHNOIKLGRHJN
 				animation.addByPrefix('singLEFT', 'Tankman Right Note instance 1', 24);
 				animation.addByPrefix('PRETTY-GOOD', 'PRETTY GOOD tankman instance 1', 24);
-				animation.addByPrefix('singUP-alt', 'TANKMAN UGH instance 1', 24);
+				animation.addByPrefix('UGH', 'TANKMAN UGH instance 1', 24);
 
 				addOffset('idle');
 				addOffset("singUP", -6, 50);
@@ -158,7 +158,7 @@ class Character extends FlxSprite
 				addOffset("singLEFT", -10, 10);
 				addOffset("singDOWN", 0, -30);
 				addOffset('PRETTY-GOOD');
-				addOffset("singUP-alt", -6, 50);
+				addOffset('UGH');
 
 				flipX = true;
 				playAnim('idle');
