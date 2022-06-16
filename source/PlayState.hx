@@ -112,6 +112,8 @@ class PlayState extends MusicBeatState
 	var bottomBoppers:FlxSprite;
 	var santa:FlxSprite;
 
+	var skittles:FlxSprite;
+
 	var bgGirls:BackgroundGirls;
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
@@ -119,6 +121,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var scoreTxt:FlxText;
 	var SETxt:FlxText;
+	var botplayTxt:FlxText;
 	var ver = "v" + Application.current.meta.get('version');
 
 	public static var campaignScore:Int = 0;
@@ -539,6 +542,46 @@ class PlayState extends MusicBeatState
 		                            add(waveSpriteFG);
 		                    */
 		          }
+
+			//tank stage
+				case 'ugh' | 'guns' | 'stress' | 'ugh-but-funni':
+				defaultCamZoom = 0.9;
+		                  curStage = 'tank';
+		                  var bg:FlxSprite = new FlxSprite(-400,-400).loadGraphic(Paths.image('tank/tankSky'));
+		                  bg.antialiasing = true;
+		                  bg.scrollFactor.set(0, 0);
+						  bg.setGraphicSize(Std.int(bg.width * 1.5));
+		                  bg.active = false;
+		                  add(bg);
+
+						  var mountains:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('tank/tankMountains'));
+							mountains.scrollFactor.set(0.2, 0.2);
+							mountains.setGraphicSize(Std.int(1.2 * mountains.width));
+							mountains.updateHitbox();
+							mountains.antialiasing = true;
+							add(mountains);
+
+						  var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('tank/tankClouds'));
+						  clouds.scrollFactor.set(0.1, 0.1);
+						  clouds.velocity.x = FlxG.random.float(5, 15);
+					      clouds.antialiasing = true;
+						  clouds.updateHitbox();
+						  add(clouds);
+
+						  skittles = new FlxSprite(0, 50);
+		                  skittles.frames = Paths.getSparrowAtlas('tank/tankWatchtower');
+		                  skittles.animation.addByPrefix('idle', 'watchtower gradient color instance 1', 24, false);
+		                  skittles.antialiasing = true;
+						  skittles.scrollFactor.set(0.5, 0.5);
+		                  add(skittles);
+
+		                  var ground:FlxSprite = new FlxSprite(-420, -150).loadGraphic(Paths.image('tank/tankGround'));
+		                  ground.setGraphicSize(Std.int(ground.width * 1.15));
+		                  ground.updateHitbox();
+		                  ground.antialiasing = true;
+		                  ground.scrollFactor.set(1, 1);
+		                  ground.active = false;
+		                  add(ground);
 		          default:
 		          {
 		                  defaultCamZoom = 0.9;
@@ -628,6 +671,9 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
+
+			case 'tankman':
+				dad.y += 175;
 		}
 
 		boyfriend = new Boyfriend(770, 450, SONG.player1);
@@ -782,11 +828,19 @@ class PlayState extends MusicBeatState
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
+		scoreTxt.cameras = [camHUD];
 
 		SETxt = new FlxText(healthBarBG.x + healthBarBG.width - 920, healthBarBG.y + 30, 0, "", 20);
 		SETxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		SETxt.scrollFactor.set();
 		add(SETxt);
+		SETxt.cameras = [camHUD];
+
+		botplayTxt = new FlxText(healthBarBG.x + healthBarBG.width - 265, healthBarBG.y + 0, 0, "", 0 + FlxG.width - 800);
+		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		botplayTxt.scrollFactor.set();
+		botplayTxt.borderSize = 2.36;
+		botplayTxt.cameras = [camHUD];
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -802,8 +856,6 @@ class PlayState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
-		scoreTxt.cameras = [camHUD];
-		SETxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
@@ -1416,7 +1468,8 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
-		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText; //song and engine info
+		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek; //song and engine info
+		botplayTxt.text ='BOTPLAY';  //botplay text
 
 		//code to the rateings god this took me 3 hours to get working and it still isnt working propperly😭
 
@@ -1604,6 +1657,11 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
+		if (FlxG.keys.justPressed.ONE)
+		{
+			add(botplayTxt);
+		}
+
 		if (FlxG.keys.justPressed.SIX)
 		{
 			FlxG.switchState(new AnimationDebug(SONG.player1));
@@ -1611,6 +1669,12 @@ class PlayState extends MusicBeatState
 			#if desktop
 			DiscordClient.changePresence("Animation Debug", SONG.player1, null, true);
 			#end
+		}
+
+		if (FlxG.keys.justPressed.FOUR)
+		{
+			healthBar.percent += 100;
+			combo += 100;
 		}
 
 		if (startingSong)
@@ -1868,6 +1932,16 @@ class PlayState extends MusicBeatState
 
 						vocals.volume = 0;
 					}
+
+					if (FlxG.keys.justPressed.ONE)
+				{
+					health += 0;
+						combo += 0;
+						misses += 0;
+						songScore += 0;
+
+						vocals.volume = 0;
+				}
 
 					daNote.active = false;
 					daNote.visible = false;
@@ -2538,13 +2612,6 @@ class PlayState extends MusicBeatState
 		{
 			// dad.dance();
 		}
-		if (dad.curCharacter == 'garcellodead' && SONG.song.toLowerCase() == 'release')
-		{
-			if (curStep == 838)
-			{
-				dad.playAnim('garTightBars', true);
-			}
-		}
 
 //tankman lirics code
 
@@ -2677,6 +2744,9 @@ class PlayState extends MusicBeatState
 				upperBoppers.animation.play('bop', true);
 				bottomBoppers.animation.play('bop', true);
 				santa.animation.play('idle', true);
+
+			case 'tank':
+				skittles.animation.play('idle', true);
 
 			case 'limo':
 				grpLimoDancers.forEach(function(dancer:BackgroundDancer)
