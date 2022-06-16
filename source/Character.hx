@@ -159,7 +159,6 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 98, -90);
 				addOffset("UGH", 0, 0);
 				addOffset("prettyGoodAnim", 45, 20);
-				playAnim('idle');;
 
 				flipX = true;
 				playAnim('idle');
