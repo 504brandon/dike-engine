@@ -2625,26 +2625,21 @@ class PlayState extends MusicBeatState
 
 		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
 		{
-			if (curStep == 60)
+			
+			if (curStep == 59 || curStep == 443 || curStep == 523 || curStep == 827) // -1
 			{
-				dad.playAnim('UGH', true);
+				dad.addOffset("singUP", 45, 0);
+				
+				dad.animation.getByName('singUP').frames = dad.animation.getByName('UGH').frames;
 			}
-		}
 
-		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
-		{
-			if (curStep == 444)
+			if (curStep == 64 || curStep == 448 || curStep == 528 || curStep == 832) // +4
 			{
-				dad.playAnim('UGH', true);
+				dad.addOffset("singUP", 24, 56);
+				dad.animation.getByName('singUP').frames = dad.animation.getByName('singUP').frames;
 			}
-		}
 
-		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
-		{
-			if (curStep == 828)
-			{
-				dad.playAnim('UGH', true);
-			}
+			
 		}
 
 //fsm i needed to copy this code from smos or the game wont compile lol
