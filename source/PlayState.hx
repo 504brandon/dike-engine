@@ -722,6 +722,8 @@ class PlayState extends MusicBeatState
 				gfVersion = 'gf-pixel';
 			case 'schoolEvil':
 				gfVersion = 'gf-pixel';
+			case 'tank':
+				gfVersion = 'gf-tankmen';
 		}
 
 		if (curStage == 'limo')
@@ -793,6 +795,7 @@ class PlayState extends MusicBeatState
 			case 'mallEvil':
 				boyfriend.x += 320;
 				dad.y -= 80;
+
 			case 'school':
 				boyfriend.x += 200;
 				boyfriend.y += 220;
@@ -811,6 +814,9 @@ class PlayState extends MusicBeatState
 				boyfriend.y += 220;
 				gf.x += 180;
 				gf.y += 300;
+
+				case 'tank':
+				gf.x -= 123;
 		}
 
 		add(gf);
