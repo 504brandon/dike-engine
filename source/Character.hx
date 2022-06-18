@@ -85,7 +85,26 @@ class Character extends FlxSprite
 				addOffset('danceRight', 0, -9);
 				
 
-				playAnim('danceRight');
+				playAnim('idle');
+
+				case 'pico-speaker':
+				
+				tex = Paths.getSparrowAtlas('picoSpeaker');
+				frames = tex;
+				
+				animation.addByIndices('idle', 'Pico shoot 1', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "", 24, true);
+
+				animation.addByIndices('shoot1', 'Pico shoot 1', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, true);
+				animation.addByIndices('shoot2', 'Pico shoot 2', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, false);
+				animation.addByIndices('shoot3', 'Pico shoot 3', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, false);
+				animation.addByIndices('shoot4', 'Pico shoot 4', [0, 1, 2, 3, 4, 5, 6, 7], "", 24, false);
+				
+				addOffset('shoot1', 0, 0);
+				addOffset('shoot2', -1, -128);
+				addOffset('shoot3', 412, -64);
+				addOffset('shoot4', 439, -19);
+
+				playAnim('idle');
 
 			case 'gf-christmas':
 				tex = Paths.getSparrowAtlas('christmas/gfChristmas');
