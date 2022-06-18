@@ -65,7 +65,7 @@ class Character extends FlxSprite
 				case 'gf-tankmen':
 				
 				 
-				frames = Paths.getSparrowAtlas('tank/gfTankmen');
+				frames = Paths.getSparrowAtlas('gfTankmen');
 				
 				animation.addByPrefix('cheer', 'GF Dancing at Gunpoint', 24, false);
 				animation.addByPrefix('singLEFT', 'GF Dancing at Gunpoint', 24, false);
@@ -89,7 +89,7 @@ class Character extends FlxSprite
 
 				case 'pico-speaker':
 				
-				tex = Paths.getSparrowAtlas('tank/picoSpeaker');
+				tex = Paths.getSparrowAtlas('picoSpeaker');
 				frames = tex;
 				
 				animation.addByIndices('idle', 'Pico shoot 1', [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "", 24, true);
@@ -184,7 +184,7 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-			case 'tank/tankman':
+			case 'tankman':
 				tex = Paths.getSparrowAtlas('tankmanCaptain');
 				frames = tex;
 				animation.addByPrefix('idle', 'Tankman Idle Dance instance 1', 24);
@@ -427,7 +427,7 @@ class Character extends FlxSprite
 				flipX = true;
 
 				case 'bf-holding-gf':
-				var tex = Paths.getSparrowAtlas('tank/bfAndGF');
+				var tex = Paths.getSparrowAtlas('bfAndGF');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
