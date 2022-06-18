@@ -561,6 +561,20 @@ class PlayState extends MusicBeatState
 							mountains.antialiasing = true;
 							add(mountains);
 
+						  var houses:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('tank/tankBuildings'));
+							houses.scrollFactor.set(0.3, 0.3);
+					        houses.setGraphicSize(Std.int(houses.width * 1.1));
+							houses.updateHitbox();
+							houses.antialiasing = true;
+							add(houses);
+
+						var ruin:FlxSprite = new FlxSprite(-300,-20).loadGraphic(Paths.image('tank/tankRuins'));
+							ruin.scrollFactor.set(0.35, 0.35);
+							ruin.setGraphicSize(Std.int(ruin.width * 1.1));
+							ruin.updateHitbox();
+							ruin.antialiasing = true;
+							add(ruin);
+
 						  var clouds:FlxSprite = new FlxSprite(FlxG.random.int(-700, -100), FlxG.random.int(-20, 20)).loadGraphic(Paths.image('tank/tankClouds'));
 						  clouds.scrollFactor.set(0.1, 0.1);
 						  clouds.velocity.x = FlxG.random.float(5, 15);
@@ -582,6 +596,8 @@ class PlayState extends MusicBeatState
 		                  ground.scrollFactor.set(1, 1);
 		                  ground.active = false;
 		                  add(ground);
+
+
 		          default:
 		          {
 		                  defaultCamZoom = 0.9;
