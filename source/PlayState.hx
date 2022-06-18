@@ -42,6 +42,9 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import lime.app.Application;
+#if sys
+import sys.FileSystem;
+#end
 
 using StringTools;
 
@@ -815,6 +818,7 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 
+				//gf tank lol
 				case 'tank':
 				gf.x -= 123;
 		}
@@ -2726,25 +2730,6 @@ class PlayState extends MusicBeatState
 			{
 				dad.playAnim('PRETTY-GOOD', true);
 			}
-		}
-
-		if (dad.curCharacter == 'tankman' && SONG.song.toLowerCase() == 'ugh')
-		{
-			
-			if (curStep == 59 || curStep == 443 || curStep == 523 || curStep == 827) // -1
-			{
-				dad.addOffset("singUP", 45, 0);
-				
-				dad.animation.getByName('singUP').frames = dad.animation.getByName('UGH').frames;
-			}
-
-			if (curStep == 64 || curStep == 448 || curStep == 528 || curStep == 832) // +4
-			{
-				dad.addOffset("singUP", 24, 56);
-				dad.animation.getByName('singUP').frames = dad.animation.getByName('singUP').frames;
-			}
-
-			
 		}
 
 //fsm i needed to copy this code from smos or the game wont compile lol
