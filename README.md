@@ -9,6 +9,12 @@ Play the Ludum Dare prototype here: https://ninja-muffin24.itch.io/friday-night-
 Play the Newgrounds one here: https://www.newgrounds.com/portal/view/770371
 Support the project on the itch.io page: https://ninja-muffin24.itch.io/funkin
 
+support the helpers
+
+[leather 128]([https://haxe.org/download/version/4.1.5/](https://github.com/Leather128)) he helped making the timebar
+inskal supported me
+godzilla gang supported me
+
 IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMPILED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL
 
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
@@ -16,12 +22,6 @@ This game was made with love to Newgrounds and its community. Extra love to Tom 
 ## Build instructions
 
 THESE INSTRUCTIONS ARE FOR COMPILING THE GAME'S SOURCE CODE!!!
-
-IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO ITCH.IO TO DOWNLOAD THE GAME FOR PC, MAC, AND LINUX!!
-
-https://ninja-muffin24.itch.io/funkin
-
-IF YOU WANT TO COMPILE THE GAME YOURSELF, CONTINUE READING!!!
 
 ### Installing the Required Programs
 
