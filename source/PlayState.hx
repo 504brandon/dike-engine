@@ -42,9 +42,7 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import lime.app.Application;
-#if sys
-import sys.FileSystem;
-#end
+
 
 using StringTools;
 
@@ -775,7 +773,6 @@ class PlayState extends MusicBeatState
 				dad.x -= 150;
 				dad.y += 100;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
-
 			case 'tankman':
 				dad.y += 175;
 		}
@@ -1577,8 +1574,14 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
-		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek; //song and engine info
+		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' | Week ' + storyWeek; //song and engine info
 		botplayTxt.text ='BOTPLAY';  //botplay text
+
+		#if desktop
+		{
+		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek;
+		}
+		#end
 
 		//code to the rateings god this took me 3 hours to get working and it still isnt working propperly😭
 
