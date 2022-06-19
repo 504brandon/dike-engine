@@ -15,6 +15,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.net.curl.CURLCode;
+import lime.app.Application;
 
 using StringTools;
 
@@ -115,9 +116,10 @@ class StoryMenuState extends MusicBeatState
 		add(grpLocks);
 
 		trace("Line 70");
+		Application.current.window.title = 'Friday Night Funkin Dike Engine';
 		
 		#if desktop
-		// Updating Discord Rich Presence
+		// Updating Discord Rich Presence And The Title
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 

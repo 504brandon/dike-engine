@@ -12,6 +12,7 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
+import lime.app.Application;
 
 using StringTools;
 
@@ -54,6 +55,8 @@ class FreeplayState extends MusicBeatState
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In freeplay menu", null);
 		#end
+
+		Application.current.window.title = 'Friday Night Funkin Dike Engine';
 
 		var isDebug:Bool = false;
 
