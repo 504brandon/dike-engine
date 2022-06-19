@@ -958,6 +958,42 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 
+		timeBarBG = new FlxSprite(0, 0).loadGraphic(Paths.image('timebar'));
+		timeBarBG.screenCenter(X);
+		timeBarBG.scrollFactor.set();
+		timeBarBG.pixelPerfectPosition = true;
+		timeBarBG.alpha = 0;
+		timeBarBG.cameras = [camHUD];
+	
+		timeBarBG.y = 10;
+		
+		add(timeBarBG);
+		
+		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), null,
+			"", 0, FlxG.sound.music.length);
+		timeBar.scrollFactor.set();
+		timeBar.createFilledBar(0xFF000000, 0xFF52C986);
+		timeBar.pixelPerfectPosition = true;
+		timeBar.numDivisions = 800;
+		timeBar.cameras = [camHUD];
+		timeBar.alpha = 0;
+	
+		add(timeBar);
+	
+		infoTxt = new FlxText(0, 0, 0, "0:00", 32);
+		infoTxt.setFormat(Paths.font("vcr.ttf"), 32, 0xFF52C986, "center", scoreTxt.borderStyle, 0xFF000000);
+		infoTxt.screenCenter(X);
+		
+		infoTxt.scrollFactor.set();
+	
+		infoTxt.borderSize = 2;
+		infoTxt.size = 32;
+		infoTxt.y = timeBarBG.y - (infoTxt.height / 4);
+		infoTxt.alpha = 0;
+		infoTxt.cameras = [camHUD];
+	
+		add(infoTxt);
+
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1339,6 +1375,14 @@ class PlayState extends MusicBeatState
 		generatedMusic = true;
 	}
 
+	var time:Float = 0;
+
+	var timeBarBG:FlxSprite;
+	var timeBar:FlxBar;
+	var infoTxt:FlxText;
+
+	var startedSong = false;
+
 	function sortByShit(Obj1:Note, Obj2:Note):Int
 	{
 		return FlxSort.byValues(FlxSort.ASCENDING, Obj1.strumTime, Obj2.strumTime);
@@ -1548,6 +1592,22 @@ class PlayState extends MusicBeatState
 		#if !debug
 		perfectMode = false;
 		#end
+
+		time = Conductor.songPosition;
+
+		timeBar.value = time;
+
+		infoTxt.text = FlxStringUtil.formatTime((FlxG.sound.music.length - FlxMath.bound(time, 0)) / 1000, false) + ' ' + SONG.song;
+		infoTxt.screenCenter(X);
+
+		if(time >= 0 && !startedSong)
+		{
+			FlxTween.tween(timeBarBG, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+			FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+			FlxTween.tween(infoTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
+
+			startedSong = true;
+		}
 
 		if (FlxG.keys.justPressed.NINE)
 		{
