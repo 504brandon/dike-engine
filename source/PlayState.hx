@@ -1597,7 +1597,7 @@ class PlayState extends MusicBeatState
 
 		timeBar.value = time;
 
-		infoTxt.text = FlxStringUtil.formatTime((FlxG.sound.music.length - FlxMath.bound(time, 0)) / 1000, false) + ' ' + SONG.song;
+		infoTxt.text = FlxStringUtil.formatTime((FlxG.sound.music.length - FlxMath.bound(time, 0)) / 1000, false);
 		infoTxt.screenCenter(X);
 
 		if(time >= 0 && !startedSong)
