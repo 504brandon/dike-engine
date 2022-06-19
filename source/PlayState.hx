@@ -48,6 +48,8 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
+	static inline final COMBO = ' | Combo:';
+
 	public static var curStage:String = '';
 	public static var SONG:SwagSong;
 	public static var isStoryMode:Bool = false;
@@ -1573,13 +1575,15 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' | Week ' + storyWeek; //song and engine info
 		botplayTxt.text ='BOTPLAY';  //botplay text
+		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song;
 
 		#if desktop
 		{
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek;
+		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song + ' - ' +  storyDifficultyText;
 		}
 		#end
 
@@ -1587,119 +1591,119 @@ class PlayState extends MusicBeatState
 
 		if (misses > 1)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
 
 		if (misses > 2)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
 
 		if (misses > 3)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
 
 		if (misses > 4)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NFC';  //nearly full combo
 
 		if (misses > 5)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';  //not bad
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NB';  //not bad
 
 		if (misses > 6)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';  //not bad
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NB';  //not bad
 
 		if (misses > 7)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';  //not bad
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NB';  //not bad
 
 		if (misses > 8)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';  //not bad
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NB';  //not bad
 
 		if (misses > 9)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';  //not bad
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | NB';  //not bad
 
 		if (misses > 10)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 11)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 12)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 13)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 14)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 15)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 16)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 17)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 18)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 19)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | PGBNTB';  //PRETTY GOOD BUT NOT THE BEST
 
 		if (misses > 20)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 21)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 22)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 23)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 24)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 25)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 26)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 27)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 28)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (misses > 29)
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F';  //fail
+		scoreTxt.text ='Score:' + songScore + COMBO + combo + ' | Misses:' + misses + ' | F';  //fail
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
