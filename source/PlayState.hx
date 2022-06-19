@@ -980,8 +980,8 @@ class PlayState extends MusicBeatState
 	
 		add(timeBar);
 	
-		infoTxt = new FlxText(0, 0, 0, "0:00", 32);
-		infoTxt.setFormat(Paths.font("vcr.ttf"), 32, 0xFF52C986, "center", scoreTxt.borderStyle, 0xFF000000);
+		infoTxt = new FlxText(0, 0, 120, "0:00", 32);
+		infoTxt.setFormat(Paths.font("vcr.ttf"), 32, 0xFFFFFFFF, "center", scoreTxt.borderStyle, 0xFF000000);
 		infoTxt.screenCenter(X);
 		
 		infoTxt.scrollFactor.set();
