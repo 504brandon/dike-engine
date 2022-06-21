@@ -886,50 +886,70 @@ class PlayState extends MusicBeatState
 		// healthBar
 
 	//char health colors
-		if (SONG.player2 == 'gf')
-		healthBar.createFilledBar(0xFFA5004D, 0xFF31B0D1);
+	if (SONG.player2 == 'gf')
+        colorP2 = 0xFFA5004D;
 
-		if (SONG.player2 == 'dad')
-		healthBar.createFilledBar(0xFFAF66CE, 0xFF31B0D1);
+        if (SONG.player2 == 'bf')
+        colorP2 = 0xFF31B0D1;
+    
+        if (SONG.player2 == 'dad' || SONG.player2 == 'parents-christmas')
+        colorP2 = 0xFFAF66CE;
 
-		if (SONG.player2 == 'pico')
-		healthBar.createFilledBar(0xFFB7D855, 0xFF31B0D1);
+        if (SONG.player2 == 'pico')
+        colorP2 = 0xFFB7D855;
 
-		if (SONG.player2 == 'spooky')
-		healthBar.createFilledBar(0xFFD57E00, 0xFF31B0D1);
+        if (SONG.player2 == 'spooky')
+        colorP2 = 0xFFD57E00;
+    
+        if (SONG.player2 == 'mom' || SONG.player2 == 'mom-car')
+        colorP2 = 0xFFD8558E;
+    
+        if (SONG.player2 == 'monster' || SONG.player2 == 'monster-christmas')
+        colorP2 = 0xFFF9FF70;
 
-		if (SONG.player2 == 'mom')
-		healthBar.createFilledBar(0xFFD8558E, 0xFF31B0D1);
+        if (SONG.player2 == 'senpai' || SONG.player2 == 'senpai-angry')
+        colorP2 = 0xFFFFAA6F;
 
-		if (SONG.player2 == 'mom-car')
-		healthBar.createFilledBar(0xFFD8558E, 0xFF31B0D1);
+        if (SONG.player2 == 'spirit')
+        colorP2 = 0xFFFF3C6E;
 
-		if (SONG.player2 == 'mom-car')
-		healthBar.createFilledBar(0xFFD8558E, 0xFF31B0D1);
+        //bf side
+        if (SONG.player1 == 'gf')
+        colorP2 = 0xFFA5004D;
+    
+        if (SONG.player1 == 'bf')
+        colorP1 = 0xFF31B0D1;
 
-		if (SONG.player2 == 'parents-christmas')
-		healthBar.createFilledBar(0xFFAF66CE, 0xFF31B0D1);
+		if (SONG.player1 == 'bf-pixel')
+		colorP1 = 0xFF7BD6F6;
+        
+        if (SONG.player1 == 'dad' || SONG.player1 == 'parents-christmas')
+        colorP2 = 0xFFAF66CE;
+    
+        if (SONG.player1 == 'pico')
+        colorP2 = 0xFFB7D855;
+    
+        if (SONG.player1 == 'spooky')
+        colorP2 = 0xFFD57E00;
+        
+        if (SONG.player1 == 'mom' || SONG.player1 == 'mom-car')
+        colorP2 = 0xFFD8558E;
+        
+        if (SONG.player1 == 'monster' || SONG.player1 == 'monster-christmas')
+        colorP2 = 0xFFF9FF70;
+    
+        if (SONG.player1 == 'senpai' || SONG.player1 == 'senpai-angry')
+        colorP2 = 0xFFFFAA6F;
+    
+        if (SONG.player1 == 'spirit')
+        colorP2 = 0xFFFF3C6E;
 
-		if (SONG.player2 == 'monster-christmas')
-		healthBar.createFilledBar(0xFFF9FF70, 0xFF31B0D1);
-
-		if (SONG.player2 == 'monster')
-		healthBar.createFilledBar(0xFFF9FF70, 0xFF31B0D1);
-
-		if (SONG.player2 == 'senpai')
-		healthBar.createFilledBar(0xFFFFAA6F, 0xFF7BD6F6);
-
-		if (SONG.player2 == 'senpai-angry')
-		healthBar.createFilledBar(0xFFFFAA6F, 0xFF7BD6F6);
-
-		if (SONG.player2 == 'spirit')
-		healthBar.createFilledBar(0xFFFF3C6E, 0xFF7BD6F6);
-
-		if (SONG.player2 == 'tankman')
-		healthBar.createFilledBar(0xFF000000, 0xFF31B0D1);
-
-		if (SONG.player2 == 'bf-pixel')
-		healthBar.createFilledBar(0xFF7BD6F6, 0xFF31B0D1);
+		if (SONG.player1 == 'tankman')
+		colorP2 = 0xFF000000;
+    
+        healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+            'health', 0, 2);
+        healthBar.createFilledBar(colorP2, colorP1);
 		add(healthBar);
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 454, healthBarBG.y + 30, 0, "", 20);
@@ -2945,4 +2965,8 @@ class PlayState extends MusicBeatState
 	}
 
 	var curLight:Int = 0;
+
+	var colorP2(default, null):FlxColor;
+
+	var colorP1:Int;
 }
