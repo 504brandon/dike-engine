@@ -11,8 +11,6 @@ Support the project on the itch.io page: https://ninja-muffin24.itch.io/funkin
 
 support the helpers
 
-[leather 128]([https://haxe.org/download/version/4.1.5/](https://github.com/Leather128)) he helped making the timebar
-
 
 inskal supported me
 
