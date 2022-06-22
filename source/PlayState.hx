@@ -948,6 +948,9 @@ class PlayState extends MusicBeatState
 
 		if (SONG.player1 == 'bf-pixel')
 		colorP1 = 0xFF7BD6F6;
+
+		if (SONG.player1 == 'bf-holding-gf')
+			colorP1 = 0xFF31B0D1;
         
         if (SONG.player1 == 'dad' || SONG.player1 == 'parents-christmas')
         colorP2 = 0xFFAF66CE;
@@ -975,7 +978,7 @@ class PlayState extends MusicBeatState
 
 		healthBar.createFilledBar(colorP2, colorP1);
 
-		if (GameplayMenu.getGame('healthcolors') == false)
+		if (PreferencesMenu.getPref('nohealthcolors'))
 			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 
 		// healthBar
@@ -1767,7 +1770,7 @@ class PlayState extends MusicBeatState
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' | Week ' + storyWeek; //song and engine info
 		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song;
 
-		if (GameplayMenu.getGame('wm') == false)
+		if (PreferencesMenu.getPref('nwm'))
 			{
 				SETxt.text = SONG.song + ' | Week ' + storyWeek;
 			}
@@ -1779,7 +1782,7 @@ class PlayState extends MusicBeatState
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek;
 		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song + ' - ' +  storyDifficultyText;
 
-		if (GameplayMenu.getGame('wm') == false)
+		if (PreferencesMenu.getPref('nwm'))
 			{
 				SETxt.text = SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek;
 			}
@@ -2702,7 +2705,7 @@ class PlayState extends MusicBeatState
 			var upP = controls.NOTE_UP_P;
 			var rightP = controls.NOTE_RIGHT_P;
 	
-			if (GameplayMenu.getGame('ghosttapping') == false)
+			if (PreferencesMenu.getPref('ogi'))
 			{    
 				if (leftP)
 					noteMiss(0);
@@ -2713,6 +2716,8 @@ class PlayState extends MusicBeatState
 				if (rightP)
 					noteMiss(3);
 				misses += 1;
+				combo = 0;
+				songScore -= 20;
 			}
 		}
 
