@@ -3,7 +3,7 @@ package;
 import animate.FlxAnimate;
 import shaderslmfao.BuildingShaders;
 import ui.PreferencesMenu;
-import ui.GameplayMenu;
+
 import shaderslmfao.ColorSwap;
 #if desktop
 import Discord.DiscordClient;
@@ -978,7 +978,7 @@ class PlayState extends MusicBeatState
 
 		healthBar.createFilledBar(colorP2, colorP1);
 
-		if (PreferencesMenu.getPref('nohealthcolors'))
+		if (PreferencesMenu.getPref('hc') == false)
 			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 
 		// healthBar
@@ -1770,7 +1770,7 @@ class PlayState extends MusicBeatState
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' | Week ' + storyWeek; //song and engine info
 		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song;
 
-		if (PreferencesMenu.getPref('nwm'))
+		if (PreferencesMenu.getPref('wm') == false)
 			{
 				SETxt.text = SONG.song + ' | Week ' + storyWeek;
 			}
@@ -1782,7 +1782,7 @@ class PlayState extends MusicBeatState
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek;
 		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song + ' - ' +  storyDifficultyText;
 
-		if (PreferencesMenu.getPref('nwm'))
+		if (PreferencesMenu.getPref('wm') == false)
 			{
 				SETxt.text = SONG.song + ' - ' + storyDifficultyText + ' | Week ' + storyWeek;
 			}
@@ -2705,7 +2705,7 @@ class PlayState extends MusicBeatState
 			var upP = controls.NOTE_UP_P;
 			var rightP = controls.NOTE_RIGHT_P;
 	
-			if (PreferencesMenu.getPref('ogi'))
+			if (PreferencesMenu.getPref('gt') == false)
 			{    
 				if (leftP)
 					noteMiss(0);
