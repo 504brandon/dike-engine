@@ -24,6 +24,7 @@ class OptionsState extends MusicBeatState
 		add(bg);
 		var optionsmenu:OptionsMenu = addPage(Options, new OptionsMenu(false));
 		var preferencesmenu:PreferencesMenu = addPage(Preferences, new PreferencesMenu());
+		var modifiersmenu:ModifiersMenu = addPage(Modifiers, new ModifiersMenu());
 		var controlsmenu:ControlsMenu = addPage(Controls, new ControlsMenu());
 		if (optionsmenu.hasMultipleOptions())
 		{

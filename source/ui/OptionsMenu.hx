@@ -14,6 +14,10 @@ class OptionsMenu extends Page
 		{
 			onSwitch.dispatch(PageName.Preferences);
 		});
+		createItem('Modifiers', function()
+		{
+				onSwitch.dispatch(PageName.Modifiers);
+		});
 		createItem('controls', function()
 		{
 			onSwitch.dispatch(PageName.Controls);

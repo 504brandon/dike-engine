@@ -7,4 +7,5 @@ enum PageName
 	Colors;
 	Mods;
 	Preferences;
+	Modifiers;
 }

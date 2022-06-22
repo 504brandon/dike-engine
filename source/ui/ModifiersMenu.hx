@@ -7,9 +7,9 @@ import flixel.FlxCamera;
 import flixel.util.FlxColor;
 import haxe.ds.StringMap;
 
-class PreferencesMenu extends Page
+class ModifiersMenu extends Page
 {
-	public static var preferences:StringMap<Dynamic> = new StringMap<Dynamic>();
+	public static var Modifiers:StringMap<Dynamic> = new StringMap<Dynamic>();
 
 	var checkboxes:Array<CheckboxThingie> = [];
 	var menuCamera:FlxCamera;
@@ -24,18 +24,13 @@ class PreferencesMenu extends Page
 		menuCamera.bgColor = FlxColor.TRANSPARENT;
 		camera = menuCamera;
 		add(items = new TextMenuList());
-		createPrefItem('censors', 'censor-naughty', false);
-		createPrefItem('ghost tapping', 'gt', true);
-		// createPrefItem('botplay', 'bp', false);
-		createPrefItem('downscroll', 'downscroll', false);
-		createPrefItem('ui', 'ui', true);
-		createPrefItem('note splashes', 'ns', true);
-		createPrefItem('watermarks', 'wm', true);
-		createPrefItem('flashing menu', 'flashing-menu', true);
-		createPrefItem('Camera Zooming on Beat', 'camera-zoom', true);
-		createPrefItem('health colors', 'hc', true);
-		createPrefItem('FPS Counter', 'fps-counter', true);
-		createPrefItem('Auto Pause', 'auto-pause', false);
+
+		createPrefItem('health drain', 'hpd', false);
+
+		createPrefItem('upsidedown', 'upd', false);
+
+		createPrefItem('insane funkin', 'insane', false);
+
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
 		if (items != null)
 		{
@@ -52,25 +47,17 @@ class PreferencesMenu extends Page
 
 	public static function getPref(pref:String)
 	{
-		return preferences.get(pref);
+		return Modifiers.get(pref);
 	}
 
 	public static function initPrefs()
 	{
-		preferenceCheck('censor-naughty', false);
-		preferenceCheck('downscroll', false);
-		preferenceCheck('ns', true);
-		preferenceCheck('ui', true);
-		preferenceCheck('wm', true);
-		preferenceCheck('flashing-menu', true);
-		preferenceCheck('camera-zoom', true);
-		preferenceCheck('fps-counter', true);
-		preferenceCheck('hc', true);
-		preferenceCheck('gt', true);
-		// preferenceCheck('bp', false);
-		preferenceCheck('auto-pause', false);
-		preferenceCheck('master-volume', 1);
-		preferenceCheck('fps', 60);
+		ModifiersCheck('hpd', false);
+
+		ModifiersCheck('upd', false);
+
+		ModifiersCheck('insane', false);
+		
 		if (!getPref('fps-counter'))
 		{
 			Lib.current.stage.removeChild(Main.fpsCounter);
@@ -78,16 +65,16 @@ class PreferencesMenu extends Page
 		FlxG.autoPause = getPref('auto-pause');
 	}
 
-	public static function preferenceCheck(identifier:String, defaultValue:Dynamic)
+	public static function ModifiersCheck(identifier:String, defaultValue:Dynamic)
 	{
-		if (preferences.get(identifier) == null)
+		if (Modifiers.get(identifier) == null)
 		{
-			preferences.set(identifier, defaultValue);
+			Modifiers.set(identifier, defaultValue);
 			trace('set preference!');
 		}
 		else
 		{
-			trace('found preference: ' + Std.string(preferences.get(identifier)));
+			trace('found preference: ' + Std.string(Modifiers.get(identifier)));
 		}
 	}
 
@@ -95,7 +82,7 @@ class PreferencesMenu extends Page
 	{
 		items.createItem(120, 120 * items.length + 30, label, Bold, function()
 		{
-			preferenceCheck(identifier, value);
+			ModifiersCheck(identifier, value);
 			if (Type.typeof(value) == TBool)
 			{
 				prefToggle(identifier);
@@ -118,18 +105,18 @@ class PreferencesMenu extends Page
 
 	public function createCheckbox(identifier:String)
 	{
-		var box:CheckboxThingie = new CheckboxThingie(0, 120 * (items.length - 1), preferences.get(identifier));
+		var box:CheckboxThingie = new CheckboxThingie(0, 120 * (items.length - 1), Modifiers.get(identifier));
 		checkboxes.push(box);
 		add(box);
 	}
 
 	public function prefToggle(identifier:String)
 	{
-		var value:Bool = preferences.get(identifier);
+		var value:Bool = Modifiers.get(identifier);
 		value = !value;
-		preferences.set(identifier, value);
+		Modifiers.set(identifier, value);
 		checkboxes[items.selectedIndex].daValue = value;
-		trace('toggled? ' + Std.string(preferences.get(identifier)));
+		trace('toggled? ' + Std.string(Modifiers.get(identifier)));
 		switch (identifier)
 		{
 			case 'auto-pause':
@@ -145,6 +132,12 @@ class PreferencesMenu extends Page
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.ESCAPE)
+			{
+				FlxG.switchState(new OptionsState());
+			}
+
 		menuCamera.followLerp = CoolUtil.camLerpShit(0.05);
 		items.forEach(function(item:MenuItem)
 		{

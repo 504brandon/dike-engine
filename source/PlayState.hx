@@ -3,6 +3,7 @@ package;
 import animate.FlxAnimate;
 import shaderslmfao.BuildingShaders;
 import ui.PreferencesMenu;
+import ui.ModifiersMenu;
 
 import shaderslmfao.ColorSwap;
 #if desktop
@@ -202,9 +203,9 @@ class PlayState extends MusicBeatState
 			case 'bopeebo':
 				dialogue = [
 					'HEY!',
-					"You think you can just sing\nwith my daughter like that?",
-					"If you want to date her...",
-					"You're going to have to go \nthrough ME first!"
+					"WHY ARE YOU SO SUS!?!?!?!?!?!?!?!?!?!??!?!",
+					"IF YOU WANNA OIKFJVOGKMGKNGHJGFNJKIFGHNKFGJHNGKHJBNFIKJHGBNIKNFVIJKHNGFHJKGVNn/GJKBNJKGBNJKEFGNGJKNGFJKNGJGNJKNJGKVNJGBKHNGJKBNGJNGJKBBNGJKVNFGJBNGJKNGKJBGNJGKNGJKNn/OJOGJMOKGJMGKBMJGKBNJGKNGJKVNGJFKIFNHGJFKGNGDFJXKBNFGKHGKHN",
+					"UR GONNA JFOJNFJKN"
 				];
 			case 'fresh':
 				dialogue = ["Not too shabby boy.", ""];
@@ -885,7 +886,12 @@ class PlayState extends MusicBeatState
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
+
+		if (PreferencesMenu.getPref('ui'))
+		{
 		add(healthBarBG);
+		}
+
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
@@ -982,27 +988,51 @@ class PlayState extends MusicBeatState
 			healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 
 		// healthBar
+		if (PreferencesMenu.getPref('ui'))
+			{
 		add(healthBar);
+			}
+
+	if (ModifiersMenu.getPref('upd'))
+		{
+		camHUD.angle = 180;
+		camGame.angle = 180;
+		}
 
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 454, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
+		if (PreferencesMenu.getPref('ui'))
+		{
 		add(scoreTxt);
+		}
 		scoreTxt.cameras = [camHUD];
 
 		SETxt = new FlxText(healthBarBG.x + healthBarBG.width - 920, healthBarBG.y + 30, 0, "", 20);
 		SETxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		SETxt.scrollFactor.set();
+		if (PreferencesMenu.getPref('ui'))
+		{
 		add(SETxt);
+		}
 		SETxt.cameras = [camHUD];
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
+
+		if (PreferencesMenu.getPref('ui'))
+			{
 		add(iconP1);
+			}
 
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
+
+		if (PreferencesMenu.getPref('ui'))
+			{
 		add(iconP2);
+			}
+			
 
 		grpNoteSplashes.cameras = [camHUD];
 		strumLineNotes.cameras = [camHUD];
@@ -1371,7 +1401,6 @@ class PlayState extends MusicBeatState
 
 		if (!paused)
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
-		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
 
 		#if desktop
@@ -1774,6 +1803,16 @@ class PlayState extends MusicBeatState
 			{
 				SETxt.text = SONG.song + ' | Week ' + storyWeek;
 			}
+
+			if (ModifiersMenu.getPref('insane'))
+				{
+				camHUD.angle += 10;
+				camGame.angle += 10;
+				camGame.zoom += 1000;
+				camGame.zoom -= 1000;
+				camHUD.zoom += 1000;
+				camHUD.zoom -= 1000;
+				}
 
         
 
@@ -2192,9 +2231,9 @@ class PlayState extends MusicBeatState
 					notes.remove(daNote, true);
 					daNote.destroy();
 
-					if (PreferencesMenu.getPref('hpd'))
+					if (ModifiersMenu.getPref('hpd'))
 				{
-				health -= 0.0084;
+				health -= 0.00212;
 				}
 
 				}
@@ -2206,6 +2245,7 @@ class PlayState extends MusicBeatState
 				if (PreferencesMenu.getPref('downscroll'))
 					doKill = daNote.y > FlxG.height;
 
+				// if (PreferencesMenu.getPref('bp') == false)
 				if (doKill)
 				{
 					if (daNote.tooLate || !daNote.wasGoodHit)
@@ -2225,7 +2265,7 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 				}
 			});
-		}
+
 
 		if (!inCutscene)
 			keyShit();
@@ -2331,6 +2371,7 @@ class PlayState extends MusicBeatState
 
 	var endingSong:Bool = false;
 
+}
 	private function popUpScore(strumtime:Float, daNote:Note):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
@@ -2706,6 +2747,7 @@ class PlayState extends MusicBeatState
 			var rightP = controls.NOTE_RIGHT_P;
 	
 			if (PreferencesMenu.getPref('gt') == false)
+			// if (PreferencesMenu.getPref('bp') == false)
 			{    
 				if (leftP)
 					noteMiss(0);
