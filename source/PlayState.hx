@@ -879,12 +879,13 @@ class PlayState extends MusicBeatState
 
 		FlxG.fixedTimestep = false;
 
+		if (PreferencesMenu.getPref('downscroll'))
+			healthBarBG.y = FlxG.height * 0.1;
+
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
 		healthBarBG.screenCenter(X);
 		healthBarBG.scrollFactor.set();
 		add(healthBarBG);
-		if (PreferencesMenu.getPref('downscroll'))
-			healthBarBG.y = FlxG.height * 0.1;
 
 		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
 			'health', 0, 2);
@@ -903,6 +904,9 @@ class PlayState extends MusicBeatState
 			colorP2 = 0xFF31B0D1;
 
 		if (SONG.player2 == 'bf-christmas')
+			colorP2 = 0xFF31B0D1;
+
+		if (SONG.player2 == 'bf-holding-gf')
 			colorP2 = 0xFF31B0D1;
     
         if (SONG.player2 == 'dad' || SONG.player2 == 'parents-christmas')
@@ -1759,7 +1763,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text ='Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
+		scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC';  //score misss and combo info
 		SETxt.text = 'Dike Engine | ' + ver + ' | ' + SONG.song + ' | Week ' + storyWeek; //song and engine info
 		Application.current.window.title = 'Friday Night Funkin Dike Engine ' + SONG.song;
 
