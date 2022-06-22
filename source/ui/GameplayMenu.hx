@@ -51,6 +51,7 @@ class GameplayMenu extends Page
 		gameplayCheck('downscroll', false);
 		gameplayCheck('ghosttapping', true);
 		gameplayCheck('wm', true);
+		gameplayCheck('healthcolors', true);
 		gameplayCheck('master-volume', 1);
 	}
 
