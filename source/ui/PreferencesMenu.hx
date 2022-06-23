@@ -38,6 +38,7 @@ class PreferencesMenu extends Page
 		createPrefItem('health colors', 'hc', true);
 		createPrefItem('FPS Counter', 'fps-counter', true);
 		createPrefItem('Auto Pause', 'auto-pause', false);
+		createPrefItem('Mods Load', 'mods', true);
 
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
 
@@ -76,6 +77,7 @@ class PreferencesMenu extends Page
 		preferenceCheck('auto-pause', false);
 		preferenceCheck('master-volume', 1);
 		preferenceCheck('fps', 60);
+		preferenceCheck('mods', true);
 
 		if (!getPref('fps-counter'))
 			Lib.current.stage.removeChild(Main.fpsCounter);

@@ -103,16 +103,10 @@ class TitleState extends MusicBeatState
 			VideoState.seenVideo = FlxG.save.data.seenVideo;
 		}
 
-		#if FREEPLAY
-		FlxG.switchState(new FreeplayState());
-		#elseif CHARTING
-		FlxG.switchState(new ChartingState());
-		#else
 		new FlxTimer().start(1, function(tmr:FlxTimer)
 		{
 			startIntro();
 		});
-		#end
 
 		#if desktop
 		DiscordClient.initialize();

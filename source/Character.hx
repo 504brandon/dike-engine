@@ -1,5 +1,7 @@
 package;
 
+import mods.HScript;
+import openfl.utils.Assets;
 import Section.SwagSection;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -19,6 +21,9 @@ class Character extends FlxSprite
 	public var holdTimer:Float = 0;
 	
 	public var animationNotes:Array<Dynamic> = [];
+
+	public var script:HScript;
+	public var health_color:Int = 0xFFFF00FF;
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -469,6 +474,43 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				flipX = true;
+
+			default:
+				if(!Assets.exists(Paths.hx('characters/$curCharacter')))
+				{
+					curCharacter = 'bf';
+
+					frames = Paths.getSparrowAtlas('characters/BOYFRIEND');
+
+					quickAnimAdd('idle', 'BF idle dance');
+					quickAnimAdd('singUP', 'BF NOTE UP0');
+					quickAnimAdd('singLEFT', 'BF NOTE LEFT0');
+					quickAnimAdd('singRIGHT', 'BF NOTE RIGHT0');
+					quickAnimAdd('singDOWN', 'BF NOTE DOWN0');
+					quickAnimAdd('singUPmiss', 'BF NOTE UP MISS');
+					quickAnimAdd('singLEFTmiss', 'BF NOTE LEFT MISS');
+					quickAnimAdd('singRIGHTmiss', 'BF NOTE RIGHT MISS');
+					quickAnimAdd('singDOWNmiss', 'BF NOTE DOWN MISS');
+					quickAnimAdd('hey', 'BF HEY');
+					animation.addByPrefix('scared', 'BF idle shaking', 24, true);
+	
+					quickAnimAdd('firstDeath', "BF dies");
+					animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
+					quickAnimAdd('deathConfirm', "BF Dead confirm");
+	
+					loadOffsetFile(curCharacter);
+	
+					playAnim('idle');
+	
+					flipX = true;
+				}
+		}
+
+		if(Assets.exists(Paths.hx('characters/$curCharacter')))
+		{
+			script = new HScript(Paths.hx('characters/$curCharacter'));
+			script.interp.variables.set("character", this);
+			script.callFunction("createCharacter");
 		}
 
 		dance();
@@ -497,9 +539,10 @@ class Character extends FlxSprite
 		}
 	}
 
-	function loadMappedAnims()
+	public function loadMappedAnims()
 	{
 		var sections:Array<SwagSection> = Song.loadFromJson('picospeaker', 'stress').notes;
+
 		for (section in sections)
 		{
 			for (note in section.sectionNotes)
@@ -507,24 +550,26 @@ class Character extends FlxSprite
 				animationNotes.push(note);
 			}
 		}
+
 		TankmenBG.animationNotes = animationNotes;
 		trace(animationNotes);
 		animationNotes.sort(sortAnims);
 	}
 
-	function sortAnims(x, y)
+	public function sortAnims(x, y)
 	{
 		return x[0] < y[0] ? -1 : x[0] > y[0] ? 1 : 0;
 	}
 
-	function quickAnimAdd(Name:String, Prefix:String)
+	public function quickAnimAdd(Name:String, Prefix:String)
 	{
 		animation.addByPrefix(Name, Prefix, 24, false);
 	}
 
-	function loadOffsetFile(char:String)
+	public function loadOffsetFile(char:String)
 	{
 		var offsets:Array<String> = CoolUtil.coolTextFile(Paths.getPath('images/characters/' + char + 'Offsets.txt', TEXT, null));
+
 		for (i in offsets)
 		{
 			var split = i.split(' ');
@@ -534,12 +579,13 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
+		if(script != null)
+			script.callFunction("update", [elapsed]);
+
 		if (!curCharacter.startsWith('bf'))
 		{
 			if (animation.curAnim.name.startsWith('sing'))
-			{
 				holdTimer += elapsed;
-			}
 
 			var dadVar:Float = 4;
 
@@ -553,9 +599,7 @@ class Character extends FlxSprite
 		}
 		
 		if (curCharacter.endsWith('-car') && !animation.curAnim.name.startsWith('sing') && animation.curAnim.finished)
-		{
 			playAnim('idleHair');
-		}
 
 		switch (curCharacter)
 		{
@@ -576,11 +620,13 @@ class Character extends FlxSprite
 					playAnim('shoot' + shotDirection, true);
 					animationNotes.shift();
 				}
+
 				if (animation.curAnim.finished)
-				{
 					playAnim(animation.curAnim.name, false, false, animation.curAnim.frames.length - 3);
-				}
 		}
+
+		if(script != null)
+			script.callFunction("updatePost", [elapsed]);
 
 		super.update(elapsed);
 	}
@@ -621,6 +667,9 @@ class Character extends FlxSprite
 				default:
 					playAnim('idle');
 			}
+
+			if(script != null)
+				script.callFunction("dance");
 		}
 	}
 

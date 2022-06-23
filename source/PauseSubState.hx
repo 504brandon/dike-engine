@@ -52,7 +52,7 @@ class PauseSubState extends MusicBeatSubstate
 		add(levelInfo);
 
 		var levelDifficulty:FlxText = new FlxText(20, 15 + 32, 0, "", 32);
-		levelDifficulty.text += CoolUtil.difficultyString();
+		levelDifficulty.text += PlayState.storyDifficultyText;
 		levelDifficulty.scrollFactor.set();
 		levelDifficulty.setFormat(Paths.font('vcr.ttf'), 32);
 		levelDifficulty.updateHitbox();
@@ -159,6 +159,7 @@ class PauseSubState extends MusicBeatSubstate
 				case "EASY" | "NORMAL" | "HARD":
 					PlayState.SONG = Song.loadFromJson(Highscore.formatSong(PlayState.SONG.song.toLowerCase(), curSelected), PlayState.SONG.song.toLowerCase());
 					PlayState.storyDifficulty = curSelected;
+					PlayState.storyDifficultyText = CoolUtil.difficultyString();
 					FlxG.resetState();
 				case "BACK":
 					menuItems = pauseOG;
