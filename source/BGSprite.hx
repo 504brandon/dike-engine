@@ -13,6 +13,7 @@ class BGSprite extends FlxSprite
 		if (animations != null)
 		{
 			frames = Paths.getSparrowAtlas(image);
+
 			for (anim in animations)
 			{
 				animation.addByPrefix(anim, anim, 24, loopAnims);
@@ -24,8 +25,10 @@ class BGSprite extends FlxSprite
 		else
 		{
 			loadGraphic(Paths.image(image));
+
 			active = false;
 		}
+		
 		scrollFactor.set(scrollX, scrollY);
 		antialiasing = true;
 	}

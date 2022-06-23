@@ -19,14 +19,16 @@ class PreferencesMenu extends Page
 	override public function new()
 	{
 		super();
+
 		menuCamera = new FlxCamera();
 		FlxG.cameras.add(menuCamera, false);
 		menuCamera.bgColor = FlxColor.TRANSPARENT;
 		camera = menuCamera;
+
 		add(items = new TextMenuList());
+
 		createPrefItem('censors', 'censor-naughty', false);
 		createPrefItem('ghost tapping', 'gt', true);
-		// createPrefItem('botplay', 'bp', false);
 		createPrefItem('downscroll', 'downscroll', false);
 		createPrefItem('ui', 'ui', true);
 		createPrefItem('note splashes', 'ns', true);
@@ -36,11 +38,12 @@ class PreferencesMenu extends Page
 		createPrefItem('health colors', 'hc', true);
 		createPrefItem('FPS Counter', 'fps-counter', true);
 		createPrefItem('Auto Pause', 'auto-pause', false);
+
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
+
 		if (items != null)
-		{
 			camFollow.y = items.members[items.selectedIndex].y;
-		}
+
 		menuCamera.follow(camFollow, null, 0.06);
 		menuCamera.deadzone.set(0, 160, menuCamera.width, 40);
 		menuCamera.minScrollY = 0;
@@ -57,6 +60,9 @@ class PreferencesMenu extends Page
 
 	public static function initPrefs()
 	{
+		if(FlxG.save.data.preferences != null)
+			preferences = FlxG.save.data.preferences;
+		
 		preferenceCheck('censor-naughty', false);
 		preferenceCheck('downscroll', false);
 		preferenceCheck('ns', true);
@@ -67,14 +73,13 @@ class PreferencesMenu extends Page
 		preferenceCheck('fps-counter', true);
 		preferenceCheck('hc', true);
 		preferenceCheck('gt', true);
-		// preferenceCheck('bp', false);
 		preferenceCheck('auto-pause', false);
 		preferenceCheck('master-volume', 1);
 		preferenceCheck('fps', 60);
+
 		if (!getPref('fps-counter'))
-		{
 			Lib.current.stage.removeChild(Main.fpsCounter);
-		}
+
 		FlxG.autoPause = getPref('auto-pause');
 	}
 
@@ -84,11 +89,12 @@ class PreferencesMenu extends Page
 		{
 			preferences.set(identifier, defaultValue);
 			trace('set preference!');
+
+			FlxG.save.data.preferences = preferences;
+			FlxG.save.flush();
 		}
 		else
-		{
 			trace('found preference: ' + Std.string(preferences.get(identifier)));
-		}
 	}
 
 	public function createPrefItem(label:String, identifier:String, value:Dynamic)
@@ -129,7 +135,9 @@ class PreferencesMenu extends Page
 		value = !value;
 		preferences.set(identifier, value);
 		checkboxes[items.selectedIndex].daValue = value;
+
 		trace('toggled? ' + Std.string(preferences.get(identifier)));
+
 		switch (identifier)
 		{
 			case 'auto-pause':
@@ -140,12 +148,17 @@ class PreferencesMenu extends Page
 				else
 					Lib.current.stage.removeChild(Main.fpsCounter);
 		}
+
+		FlxG.save.data.preferences = preferences;
+		FlxG.save.flush();
 	}
 
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
 		menuCamera.followLerp = CoolUtil.camLerpShit(0.05);
+
 		items.forEach(function(item:MenuItem)
 		{
 			if (item == items.members[items.selectedIndex])

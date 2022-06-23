@@ -107,14 +107,14 @@ class StoryMenuState extends MusicBeatState
 		add(grpLocks);
 
 		trace("Line 70");
-		
+
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
 		Application.current.window.title = 'Friday Night Funkin Dike Engine';
-		trace ("desktop title name changed");
+		trace("desktop title name changed");
 
 		for (i in 0...weekData.length)
 		{
@@ -320,6 +320,7 @@ class StoryMenuState extends MusicBeatState
 			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
+			
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
 				LoadingState.loadAndSwitchState(new PlayState(), true);

@@ -29,16 +29,23 @@ class CoolUtil
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
 	{
 		var dumbArray:Array<Int> = [];
+
 		for (i in min...max)
 		{
 			dumbArray.push(i);
 		}
+
 		return dumbArray;
 	}
 
 	public static function camLerpShit(ratio:Float)
 	{
-		return FlxG.elapsed / (1 / 60) * ratio;
+		return ((1.0 / Main.fpsCounter.currentFPS) / (1 / 60)) * ratio;
+	}
+
+	public static function colorLerpShit(ratio:Float)
+	{
+		return ((1 / 60) / (1.0 / Main.fpsCounter.currentFPS)) * ratio;
 	}
 
 	public static function coolLerp(a:Float, b:Float, ratio:Float)

@@ -19,6 +19,7 @@ class ModifiersMenu extends Page
 	override public function new()
 	{
 		super();
+
 		menuCamera = new FlxCamera();
 		FlxG.cameras.add(menuCamera, false);
 		menuCamera.bgColor = FlxColor.TRANSPARENT;
@@ -54,18 +55,17 @@ class ModifiersMenu extends Page
 
 	public static function initPrefs()
 	{
+		if(FlxG.save.data.modifiers != null)
+			Modifiers = FlxG.save.data.modifiers;
+		
 		ModifiersCheck('hpd', false);
-
 		ModifiersCheck('upd', false);
-
 		ModifiersCheck('op', false);
-
 		ModifiersCheck('insane', false);
 		
 		if (!getPref('fps-counter'))
-		{
 			Lib.current.stage.removeChild(Main.fpsCounter);
-		}
+
 		FlxG.autoPause = getPref('auto-pause');
 	}
 
@@ -75,6 +75,9 @@ class ModifiersMenu extends Page
 		{
 			Modifiers.set(identifier, defaultValue);
 			trace('set preference!');
+
+			FlxG.save.data.modifiers = Modifiers;
+			FlxG.save.flush();
 		}
 		else
 		{
@@ -87,23 +90,18 @@ class ModifiersMenu extends Page
 		items.createItem(120, 120 * items.length + 30, label, Bold, function()
 		{
 			ModifiersCheck(identifier, value);
+			
 			if (Type.typeof(value) == TBool)
-			{
 				prefToggle(identifier);
-			}
 			else
-			{
 				trace('swag');
-			}
 		});
+
 		if (Type.typeof(value) == TBool)
-		{
 			createCheckbox(identifier);
-		}
 		else
-		{
 			trace('swag');
-		}
+
 		trace(Type.typeof(value));
 	}
 
@@ -120,7 +118,9 @@ class ModifiersMenu extends Page
 		value = !value;
 		Modifiers.set(identifier, value);
 		checkboxes[items.selectedIndex].daValue = value;
+
 		trace('toggled? ' + Std.string(Modifiers.get(identifier)));
+
 		switch (identifier)
 		{
 			case 'auto-pause':
@@ -131,6 +131,9 @@ class ModifiersMenu extends Page
 				else
 					Lib.current.stage.removeChild(Main.fpsCounter);
 		}
+
+		FlxG.save.data.modifiers = Modifiers;
+		FlxG.save.flush();
 	}
 
 	override function update(elapsed:Float)
@@ -138,11 +141,10 @@ class ModifiersMenu extends Page
 		super.update(elapsed);
 
 		if (FlxG.keys.justPressed.ESCAPE)
-			{
-				FlxG.switchState(new OptionsState());
-			}
+			FlxG.switchState(new OptionsState());
 
 		menuCamera.followLerp = CoolUtil.camLerpShit(0.05);
+
 		items.forEach(function(item:MenuItem)
 		{
 			if (item == items.members[items.selectedIndex])

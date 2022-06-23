@@ -6,9 +6,6 @@ import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
 import flixel.util.FlxColor;
-#if polymod
-import polymod.format.ParseRules.TargetSignatureElement;
-#end
 
 using StringTools;
 
@@ -125,16 +122,12 @@ class Note extends FlxSprite
 				animation.play('redScroll');
 		}
 
-		// trace(prevNote);
-
 		if (isSustainNote && prevNote != null)
 		{
 			alpha = 0.6;
 
 			if (PreferencesMenu.getPref('downscroll'))
-			{
 				angle = 180;
-			}
 
 			x += width / 2;
 
@@ -173,7 +166,6 @@ class Note extends FlxSprite
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
-				// prevNote.setGraphicSize();
 			}
 		}
 	}
@@ -196,12 +188,9 @@ class Note extends FlxSprite
 			}
 			else
 			{
-				if (strumTime > Conductor.songPosition - Conductor.safeZoneOffset)
-				{
-					if (strumTime < Conductor.songPosition + 0.5 * Conductor.safeZoneOffset)
-						canBeHit = true;
-				}
-				else
+				if (Conductor.songPosition > strumTime - Conductor.safeZoneOffset)
+					canBeHit = true;
+				else if(Conductor.songPosition > strumTime + Conductor.safeZoneOffset)
 				{
 					willMiss = true;
 					canBeHit = true;
