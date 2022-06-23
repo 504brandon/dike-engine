@@ -31,6 +31,8 @@ class ModifiersMenu extends Page
 
 		createPrefItem('insane funkin', 'insane', false);
 
+		createPrefItem('opponent play', 'op', false);
+
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
 		if (items != null)
 		{
@@ -55,6 +57,8 @@ class ModifiersMenu extends Page
 		ModifiersCheck('hpd', false);
 
 		ModifiersCheck('upd', false);
+
+		ModifiersCheck('op', false);
 
 		ModifiersCheck('insane', false);
 		

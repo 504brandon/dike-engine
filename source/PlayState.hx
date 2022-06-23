@@ -1401,6 +1401,7 @@ class PlayState extends MusicBeatState
 
 		if (!paused)
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
+		FlxG.sound.music.onComplete = endSong();
 		vocals.play();
 
 		#if desktop
@@ -1814,6 +1815,13 @@ class PlayState extends MusicBeatState
 				camHUD.zoom -= 1000;
 				}
 
+				if (ModifiersMenu.getPref('op'))
+					{
+					SONG.player2 == SONG.player1;
+
+					SONG.player1 == SONG.player2;
+					}
+
         
 
 		#if desktop
@@ -2023,14 +2031,6 @@ class PlayState extends MusicBeatState
 			iconP2.animation.curAnim.curFrame = 1;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
-
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
-
-		#if debug
-		if (FlxG.keys.justPressed.EIGHT)
-			FlxG.switchState(new AnimationDebug(SONG.player2));
-		#end
 
 		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 		{
@@ -2394,6 +2394,8 @@ class PlayState extends MusicBeatState
 		if (noteDiff > Conductor.safeZoneOffset * 0.9)
 		{
 			daRating = 'shit';
+			if (PreferencesMenu.getPref('censor-naughty'))
+			daRating = 'oof';
 			score = 50;
 			doSplash = false;
 		}
@@ -2751,12 +2753,16 @@ class PlayState extends MusicBeatState
 			{    
 				if (leftP)
 					noteMiss(0);
+				boyfriend.playAnim('singLEFTmiss', true);
 				if (downP)
 					noteMiss(1);
+				    boyfriend.playAnim('singDOWNmiss', true);
 				if (upP)
 					noteMiss(2);
+				    boyfriend.playAnim('singUPmiss', true);
 				if (rightP)
 					noteMiss(3);
+				    boyfriend.playAnim('singRIGHTmiss', true);
 				misses += 1;
 				combo = 0;
 				songScore -= 20;
@@ -3081,4 +3087,5 @@ class PlayState extends MusicBeatState
 	var colorP2:Int;
 
 	var colorP1:Int;
-}
+
+	}
