@@ -30,13 +30,13 @@ class PreferencesMenu extends Page
 		createPrefItem('censors', 'censor-naughty', false);
 		createPrefItem('ghost tapping', 'gt', true);
 		createPrefItem('downscroll', 'downscroll', false);
+		createPrefItem('Complex Score Text', 'cst', true);
 		createPrefItem('ui', 'ui', true);
 		createPrefItem('note splashes', 'ns', true);
 		createPrefItem('watermarks', 'wm', true);
 		createPrefItem('flashing menu', 'flashing-menu', true);
 		createPrefItem('Camera Zooming on Beat', 'camera-zoom', true);
 		createPrefItem('health colors', 'hc', true);
-		createPrefItem('FPS Counter', 'fps-counter', true);
 		createPrefItem('Auto Pause', 'auto-pause', false);
 		createPrefItem('Mods Load', 'mods', true);
 
@@ -66,12 +66,12 @@ class PreferencesMenu extends Page
 		
 		preferenceCheck('censor-naughty', false);
 		preferenceCheck('downscroll', false);
+		preferenceCheck('cst', true);
 		preferenceCheck('ns', true);
 		preferenceCheck('ui', true);
 		preferenceCheck('wm', true);
 		preferenceCheck('flashing-menu', true);
 		preferenceCheck('camera-zoom', true);
-		preferenceCheck('fps-counter', true);
 		preferenceCheck('hc', true);
 		preferenceCheck('gt', true);
 		preferenceCheck('auto-pause', false);

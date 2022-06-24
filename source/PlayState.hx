@@ -201,6 +201,7 @@ class PlayState extends MusicBeatState
 			SONG = Song.loadFromJson('tutorial');
 
 		// brandon get noob
+		//i didnt even see this until i was messing with playstate lol anyway leather if you are seeing this unoreverse card
 		if (ModifiersMenu.getPref('op'))
 		{
 			var oldP1 = SONG.player1;
@@ -921,10 +922,21 @@ class PlayState extends MusicBeatState
 			camGame.angle = 180;
 		}
 
+		if (PreferencesMenu.getPref('cst'))
+		{
 		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 454, healthBarBG.y + 30, 0, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		scoreTxt.cameras = [camHUD];
+		}
+
+		if (PreferencesMenu.getPref('cst') == false)
+			{
+			scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 387, healthBarBG.y + 30, 0, "", 20);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			scoreTxt.cameras = [camHUD];
+			}
 
 		SETxt = new FlxText(healthBarBG.x + healthBarBG.width - 920, healthBarBG.y + 30, 0, "", 20);
 		SETxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -1690,6 +1702,8 @@ class PlayState extends MusicBeatState
 			camHUD.zoom -= 1000 * (60.0 / Main.fpsCounter.currentFPS);
 		}
 
+		if (ModifiersMenu.getPref('cst'))
+		{
 		if(misses == 0)
 			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC'; // score misss and combo info
 		else if(misses > 0 && misses < 5)
@@ -1700,6 +1714,12 @@ class PlayState extends MusicBeatState
 			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  // PRETTY GOOD BUT NOT THE BEST
 		else
 			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F'; // fail
+		}
+
+		if (PreferencesMenu.getPref('cst') == false)
+		{
+			scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses;
+		}
 
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
@@ -1957,7 +1977,11 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 
 					if (ModifiersMenu.getPref('hpd'))
-						health -= 0.00212;
+						health -= 0.01;
+
+					if(health < 0.02)
+						health = 0.01;
+						
 				}
 
 				var doKill = Conductor.songPosition > daNote.strumTime + Conductor.safeZoneOffset;

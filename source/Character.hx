@@ -7,6 +7,22 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
+//stuff i added for the modchart system in your chareter (basicly made it so the modsystem has a modchart system sorta idk its inside ur char)
+import ui.PreferencesMenu;
+import ui.ModifiersMenu;
+import shaderslmfao.ColorSwap;
+import lime.app.Application;
+#if desktop
+import Discord.DiscordClient;
+#end
+import flixel.FlxState;
+import flixel.FlxSubState;
+import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.effects.FlxTrail;
+import flixel.addons.effects.FlxTrailArea;
+import flixel.addons.effects.chainable.FlxEffectSprite;
+import flixel.addons.effects.chainable.FlxWaveEffect;
+import openfl.filters.ShaderFilter;
 
 using StringTools;
 
