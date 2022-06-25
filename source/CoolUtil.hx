@@ -16,7 +16,7 @@ class CoolUtil
 		if(diff < 2 && diff >= 0)
 			return difficultyArray[diff];
 		else
-			return "UNKNOWN";
+			return "HARD";
 	}
 
 	public static function coolTextFile(path:String):Array<String>
