@@ -46,6 +46,7 @@ import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
 import openfl.utils.Assets as OpenFlAssets;
+import mods.HScript;
 import lime.app.Application;
 
 using StringTools;
@@ -140,6 +141,8 @@ class PlayState extends MusicBeatState
 	public var scoreTxt:FlxText;
 	public var SETxt:FlxText;
 	public var ver = "v" + Application.current.meta.get('version');
+
+	public var script:HScript;
 
 	public static var campaignScore:Int = 0;
 
@@ -624,27 +627,36 @@ class PlayState extends MusicBeatState
 			default:
 				{
 					defaultCamZoom = 0.9;
-					curStage = 'stage';
+					if (Assets.exists(Paths.hx('stages/${SONG.song}'))) {
+						{
+							script = new HScript(Paths.hx('stages/${SONG.song}'));
+							script.interp.variables.set("stage", this);
+							script.callFunction("createStage");
+						}
+					} else {
 
-					bg = new BGSprite('stageback', -600, -200, 0.9, 0.9);
-					add(bg);
+						curStage = 'stage';
 
-					stageFront = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
-					stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-					stageFront.updateHitbox();
-					stageFront.antialiasing = true;
-					stageFront.scrollFactor.set(0.9, 0.9);
-					stageFront.active = false;
-					add(stageFront);
+						bg = new BGSprite('stageback', -600, -200, 0.9, 0.9);
+						add(bg);
 
-					stageCurtains = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
-					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-					stageCurtains.updateHitbox();
-					stageCurtains.antialiasing = true;
-					stageCurtains.scrollFactor.set(1.3, 1.3);
-					stageCurtains.active = false;
+						stageFront = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.scrollFactor.set(0.9, 0.9);
+						stageFront.active = false;
+						add(stageFront);
 
-					add(stageCurtains);
+						stageCurtains = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.scrollFactor.set(1.3, 1.3);
+						stageCurtains.active = false;
+
+						add(stageCurtains);
+					}
 				}
 		}
 
@@ -1966,7 +1978,7 @@ class PlayState extends MusicBeatState
 						case 3:
 							dad.playAnim('singRIGHT' + altAnim, true);
 					}
-
+					
 					dad.holdTimer = 0;
 
 					if (SONG.needsVoices)
@@ -2495,7 +2507,7 @@ class PlayState extends MusicBeatState
 		var upP = controls.NOTE_UP_P;
 		var rightP = controls.NOTE_RIGHT_P;
 
-		if (PreferencesMenu.getPref('gt') == false)
+		if (PreferencesMenu.getPref('gt') == false) // ghost tapping
 			// if (PreferencesMenu.getPref('bp') == false)
 		{
 			if (leftP)
@@ -2510,6 +2522,7 @@ class PlayState extends MusicBeatState
 			if (rightP)
 				noteMiss(3);
 			boyfriend.playAnim('singRIGHTmiss', true);
+
 			misses += 1;
 			combo = 0;
 			songScore -= 20;
