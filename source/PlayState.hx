@@ -226,7 +226,7 @@ class PlayState extends MusicBeatState
 			case 'bopeebo':
 				dialogue = [
 					'HEY!',
-					"WHY ARE YOU SO SUS!?!?!?!?!?!?!?!?!?!??!?!",
+					"WHY ARE YOU SO SUS!?!?!?!?!?!?!?!?!?!??!?!", //wtf is this dude
 					"IF YOU WANNA OIKFJVOGKMGKNGHJGFNJKIFGHNKFGJHNGKHJBNFIKJHGBNIKNFVIJKHNGFHJKGVNn/GJKBNJKGBNJKEFGNGJKNGFJKNGJGNJKNJGKVNJGBKHNGJKBNGJNGJKBBNGJKVNFGJBNGJKNGKJBGNJGKNGJKNn/OJOGJMOKGJMGKBMJGKBNJGKNGJKVNGJFKIFNHGJFKGNGDFJXKBNFGKHGKHN",
 					"UR GONNA JFOJNFJKN"
 				];
@@ -2006,7 +2006,17 @@ class PlayState extends MusicBeatState
 						songScore -= 10;
 						vocals.volume = 0;
 					}
-
+					
+					else if(ModifiersMenu.getPref('gd')) { //making it to work
+						
+						health -= 0;
+						combo += 0;
+						misses = 0;
+						songScore += 0:
+						vocals.volume = 1;
+						
+						}
+						
 					daNote.active = false;
 					daNote.visible = false;
 
