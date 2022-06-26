@@ -37,7 +37,7 @@ class PreferencesMenu extends Page
 		createPrefItem('flashing menu', 'flashing-menu', true);
 		createPrefItem('Camera Zooming on Beat', 'camera-zoom', true);
 		createPrefItem('health colors', 'hc', true);
-		createPrefItem('Auto Pause', 'auto-pause', false);
+		createPrefItem('Auto Pause', 'auto-pause', false); //please make it be onas
 		createPrefItem('Mods Load', 'mods', true);
 
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
