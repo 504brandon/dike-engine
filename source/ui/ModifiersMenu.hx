@@ -33,6 +33,8 @@ class ModifiersMenu extends Page
 		createPrefItem('insane funkin', 'insane', false);
 
 		createPrefItem('opponent play', 'op', false);
+		
+		createPrefItem('god mode', 'gd', false) //funny pref var
 
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
 		if (items != null)
@@ -62,6 +64,7 @@ class ModifiersMenu extends Page
 		ModifiersCheck('upd', false);
 		ModifiersCheck('op', false);
 		ModifiersCheck('insane', false);
+		ModifierCheck('gd', false)
 		
 		if (!getPref('fps-counter'))
 			Lib.current.stage.removeChild(Main.fpsCounter);
