@@ -2012,7 +2012,7 @@ class PlayState extends MusicBeatState
 						health -= 0;
 						combo += 0;
 						misses = 0;
-						songScore += 0:
+						songScore += 0;
 						vocals.volume = 1;
 						
 						}
