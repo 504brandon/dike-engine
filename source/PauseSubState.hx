@@ -17,7 +17,7 @@ class PauseSubState extends MusicBeatSubstate
 {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
-	var pauseOG:Array<String> = ['Resume', 'Restart Song', 'Change Difficulty', 'Toggle Practice Mode', 'Exit to menu'];
+	var pauseOG:Array<String> = ['Resume', 'Restart Song', 'Options', 'Change Difficulty', 'Toggle Practice Mode', 'Exit to menu'];
 	var difficultyChoices:Array<String> = ['EASY', 'NORMAL', 'HARD', 'BACK'];
 
 	var menuItems:Array<String> = [];
@@ -145,6 +145,8 @@ class PauseSubState extends MusicBeatSubstate
 				case "Change Difficulty":
 					menuItems = difficultyChoices;
 					regenMenu();
+				case "Options":
+					ui.OptionsMenu();
 				case "Toggle Practice Mode":
 					PlayState.practiceMode = !PlayState.practiceMode;
 					practiceText.visible = PlayState.practiceMode;
