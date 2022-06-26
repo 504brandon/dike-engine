@@ -64,7 +64,7 @@ class ModifiersMenu extends Page
 		ModifiersCheck('upd', false);
 		ModifiersCheck('op', false);
 		ModifiersCheck('insane', false);
-		ModifierCheck('gd', false); //funny line
+		ModifiersCheck('gd', false); //funny line
 		
 		if (!getPref('fps-counter'))
 			Lib.current.stage.removeChild(Main.fpsCounter);
