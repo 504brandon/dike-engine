@@ -627,9 +627,9 @@ class PlayState extends MusicBeatState
 			default:
 				{
 					defaultCamZoom = 0.9;
-					if (Assets.exists(Paths.hx('stages/${SONG.song}'))) {
+					if (Assets.exists(Paths.hx('stages/${SONG.song.toLowerCase()}'))) {
 						{
-							script = new HScript(Paths.hx('stages/${SONG.song}'));
+							script = new HScript(Paths.hx('stages/${SONG.song.toLowerCase()}'));
 							script.interp.variables.set("stage", this);
 							script.callFunction("createStage");
 						}
@@ -1714,24 +1714,22 @@ class PlayState extends MusicBeatState
 			camHUD.zoom -= 1000 * (60.0 / Main.fpsCounter.currentFPS);
 		}
 
-		if (ModifiersMenu.getPref('cst'))
+		if (PreferencesMenu.getPref('cst'))
 		{
-		if(misses == 0)
-			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC'; // score misss and combo info
-		else if(misses > 0 && misses < 5)
-			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC'; // nearly fc
-		else if(misses > 4 && misses < 10)
-			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';
-		else if(misses > 9 && misses < 20)
-			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  // PRETTY GOOD BUT NOT THE BEST
-		else
-			scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F'; // fail
+			if(misses == 0)
+				scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | FC'; // score misss and combo info
+			else if(misses > 0 && misses < 5)
+				scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NFC'; // nearly fc
+			else if(misses > 4 && misses < 10)
+				scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | NB';
+			else if(misses > 9 && misses < 20)
+				scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | PGBNTB';  // PRETTY GOOD BUT NOT THE BEST
+			else
+				scoreTxt.text = 'Score:' + songScore + ' | Combo:' + combo + ' | Misses:' + misses + ' | F'; // fail
 		}
 
-		if (PreferencesMenu.getPref('cst') == false)
-		{
+		if (!PreferencesMenu.getPref('cst'))
 			scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses;
-		}
 
 		if (controls.PAUSE && startedCountdown && canPause)
 		{
