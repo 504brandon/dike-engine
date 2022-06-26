@@ -34,7 +34,7 @@ class ModifiersMenu extends Page
 
 		createPrefItem('opponent play', 'op', false);
 		
-		createPrefItem('god mode', 'gd', false) //funny pref var
+		createPrefItem('god mode', 'gd', false); //funny pref var
 
 		camFollow = new FlxObject(FlxG.width / 2, 0, 140, 70);
 		if (items != null)
