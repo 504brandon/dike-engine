@@ -49,7 +49,7 @@ class StoryMenuState extends MusicBeatState
 		['tankman', 'bf', 'gf']
 	];
 
-	var weekNames:Array<String> = ["Daddy Dearest", "Spooky Month", "PICO", "MOMMY MUST MURDER", "RED SNOW", "hating simulator ft. moawling", "TANKMAN"];
+	var weekNames:Array<String> = [" ", "Daddy Dearest", "Spooky Month", "PICO", "MOMMY MUST MURDER", "RED SNOW", "hating simulator ft. moawling", "TANKMAN"];
 
 	var weekDifficulties:Array<Array<String>> = [
 		["easy", "normal", "hard"],
