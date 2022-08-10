@@ -1,0 +1,10 @@
+{
+    "songs": [
+        {
+            "name": "Test",
+            "icon": "bf-pixel",
+            "difficulties": ["Normal"],
+            "color": "#7bd6f6"
+        }
+    ]
+}
