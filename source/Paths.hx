@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
+import lime.utils.Assets;
 
 class Paths
 {
@@ -16,7 +17,7 @@ class Paths
 		currentLevel = name.toLowerCase();
 	}
 
-	static function getPath(file:String, type:AssetType, library:Null<String>)
+	static public function getPath(file:String, type:AssetType, library:Null<String>)
 	{
 		if (library != null)
 			return getLibraryPath(file, library);
@@ -24,10 +25,22 @@ class Paths
 		if (currentLevel != null)
 		{
 			var levelPath = getLibraryPathForce(file, currentLevel);
+
 			if (OpenFlAssets.exists(levelPath, type))
 				return levelPath;
 
 			levelPath = getLibraryPathForce(file, "shared");
+
+			if (OpenFlAssets.exists(levelPath, type))
+				return levelPath;
+
+			var weekPath:String = "week" + PlayState.storyWeek;
+
+			if (PlayState.storyWeek < 1)
+				weekPath = "tutorial";
+
+			levelPath = getLibraryPathForce(file, weekPath);
+
 			if (OpenFlAssets.exists(levelPath, type))
 				return levelPath;
 		}
@@ -70,6 +83,11 @@ class Paths
 		return getPath('data/$key.json', TEXT, library);
 	}
 
+	inline static public function hx(key:String, ?library:String)
+	{
+		return getPath('$key.hx', TEXT, library);
+	}
+
 	static public function sound(key:String, ?library:String)
 	{
 		return getPath('sounds/$key.$SOUND_EXT', SOUND, library);
@@ -85,11 +103,18 @@ class Paths
 		return getPath('music/$key.$SOUND_EXT', MUSIC, library);
 	}
 
-	inline static public function voices(song:String)
-	{
-		return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
-	}
-
+	static public function voices(song:String, ?difficulty:String)
+		{
+			if(difficulty != null)
+			{
+				if(Assets.exists('songs:assets/songs/${song.toLowerCase()}/Voices-$difficulty.$SOUND_EXT'))
+				{
+					return 'songs:assets/songs/${song.toLowerCase()}/Voices-$difficulty.$SOUND_EXT';
+				}
+			}
+	
+			return 'songs:assets/songs/${song.toLowerCase()}/Voices.$SOUND_EXT';
+		}
 	inline static public function inst(song:String)
 	{
 		return 'songs:assets/songs/${song.toLowerCase()}/Inst.$SOUND_EXT';
@@ -104,6 +129,12 @@ class Paths
 	{
 		return 'assets/fonts/$key';
 	}
+
+	inline static public function video(key:String, ?library:String)
+{
+	trace('assets/videos/$key.mp4');
+	return getPath('videos/$key.mp4', BINARY, library);
+}
 
 	inline static public function getSparrowAtlas(key:String, ?library:String)
 	{

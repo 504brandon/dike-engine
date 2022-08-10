@@ -4,22 +4,14 @@ import flixel.FlxG;
 
 class Highscore
 {
-	#if (haxe >= "4.0.0")
-	public static var songScores:Map<String, Int> = new Map();
-	#else
 	public static var songScores:Map<String, Int> = new Map<String, Int>();
-	#end
 
-
-	public static function saveScore(song:String, score:Int = 0, ?diff:Int = 0):Void
+	public static function saveScore(song:String, score:Int = 0, ?diff:Dynamic = "Easy"):Void
 	{
+		if(Std.isOfType(diff, Int))
+			diff = CoolUtil.difficultyString(diff);
+		
 		var daSong:String = formatSong(song, diff);
-
-
-		#if !switch
-		NGio.postScore(score, song);
-		#end
-
 
 		if (songScores.exists(daSong))
 		{
@@ -30,13 +22,10 @@ class Highscore
 			setScore(daSong, score);
 	}
 
-	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
+	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Dynamic = "Easy"):Void
 	{
-
-		#if !switch
-		NGio.postScore(score, "Week " + week);
-		#end
-
+		if(Std.isOfType(diff, Int))
+			diff = CoolUtil.difficultyString(diff);
 
 		var daWeek:String = formatSong('week' + week, diff);
 
@@ -60,14 +49,15 @@ class Highscore
 		FlxG.save.flush();
 	}
 
-	public static function formatSong(song:String, diff:Int):String
+	public static function formatSong(song:String, diff:Dynamic):String
 	{
 		var daSong:String = song;
 
-		if (diff == 0)
-			daSong += '-easy';
-		else if (diff == 2)
-			daSong += '-hard';
+		if(Std.isOfType(diff, Int))
+			diff = CoolUtil.difficultyString(diff);
+
+		if(diff.toLowerCase() != "normal")
+			daSong += '-${diff.toLowerCase()}';
 
 		return daSong;
 	}
