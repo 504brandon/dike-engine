@@ -65,6 +65,10 @@ class CharSelectMenu extends MusicBeatState
             bf.animation.play('idle', true);
             pico.animation.play('idle', true);
             tankman.animation.play('idle', true);
+            
+            if(FlxG.save.data.Boyguy != Boyguy)
+                Boyguy = FlxG.save.data.Boyguy;
+            select();
         }
 
         function select() {
@@ -75,18 +79,24 @@ class CharSelectMenu extends MusicBeatState
                 pico.alpha = 0;
                 tankman.alpha = 0;
                 bfver = 'bf';
+                FlxG.save.data.Boyguy = Boyguy;
+			    FlxG.save.flush();
 
             case 1:
                 pico.alpha = 1;
                 bf.alpha = 0;
                 tankman.alpha = 0;
                 bfver = 'pico';
+                FlxG.save.data.Boyguy = Boyguy;
+			    FlxG.save.flush();
 
             case 2:
                 tankman.alpha = 1;
                 pico.alpha = 0;
                 bf.alpha = 0;
                 bfver = 'tankman';
+                FlxG.save.data.Boyguy = Boyguy;
+			    FlxG.save.flush();
     
         }
     }
