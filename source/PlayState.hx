@@ -231,37 +231,37 @@ class PlayState extends MusicBeatState
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
 
-		if (SONG.song.toLowerCase() == 'Eggnog')
+		if (SONG.song.toLowerCase() == 'eggnog')
 		{
 			bca = false;
 		}
 
-		if (SONG.song.toLowerCase() == 'Cocoa')
+		if (SONG.song.toLowerCase() == 'cocoa')
 		{
 			bca = false;
 		}
 
-		if (SONG.song.toLowerCase() == 'Winter-Horrorland')
+		if (SONG.song.toLowerCase() == 'winter-horrorland')
 		{
 			bca = false;
 		}
 
-		if (SONG.song.toLowerCase() == 'Senpai')
+		if (SONG.song.toLowerCase() == 'senpai')
 		{
 			bca = false;
 		}
 
-		if (SONG.song.toLowerCase() == 'Roses')
+		if (SONG.song.toLowerCase() == 'roses')
 		{
 			bca = false;
 		}
 
-		if (SONG.song.toLowerCase() == 'Thorns')
+		if (SONG.song.toLowerCase() == 'thorns')
 		{
 			bca = false;
 		}
 
-		if (SONG.song.toLowerCase() == 'Stress')
+		if (SONG.song.toLowerCase() == 'stress')
 		{
 			bca = false;
 		}
