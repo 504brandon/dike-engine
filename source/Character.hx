@@ -134,7 +134,7 @@ class Character extends FlxSprite
 
 			case 'speakers':
 				// GIRLFRIEND CODE
-				tex = Paths.getSparrowAtlas('characters/gfbutgone');
+				tex = Paths.getSparrowAtlas('characters/gfbutsortagonelol');
 				frames = tex;
 				quickAnimAdd('cheer', 'GF Cheer');
 				quickAnimAdd('singLEFT', 'GF left note');
@@ -680,7 +680,7 @@ class Character extends FlxSprite
 		{
 			switch (curCharacter)
 			{
-				case 'gf' | 'gf-car' | 'gf-christmas' | 'gf-pixel' | 'gf-tankmen':
+				case 'gf' | 'gf-car' | 'gf-christmas' | 'gf-pixel' | 'gf-tankmen' | 'speakers':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
 						danced = !danced;

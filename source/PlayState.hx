@@ -866,6 +866,11 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if(gfVersion == 'speakers')
+		{
+		gf.y = 432;
+		}
+
 		dad = new Character(100, 100, SONG.player2);
 
 		camPos = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);
