@@ -231,37 +231,37 @@ class PlayState extends MusicBeatState
 		if (SONG == null)
 			SONG = Song.loadFromJson('tutorial');
 
-		if (SONG.song == 'Eggnog')
+		if (SONG.song.toLowerCase() == 'Eggnog')
 		{
 			bca = false;
 		}
 
-		if (SONG.song == 'Cocoa')
+		if (SONG.song.toLowerCase() == 'Cocoa')
 		{
 			bca = false;
 		}
 
-		if (SONG.song == 'Winter-Horrorland')
+		if (SONG.song.toLowerCase() == 'Winter-Horrorland')
 		{
 			bca = false;
 		}
 
-		if (SONG.song == 'Senpai')
+		if (SONG.song.toLowerCase() == 'Senpai')
 		{
 			bca = false;
 		}
 
-		if (SONG.song == 'Roses')
+		if (SONG.song.toLowerCase() == 'Roses')
 		{
 			bca = false;
 		}
 
-		if (SONG.song == 'Thorns')
+		if (SONG.song.toLowerCase() == 'Thorns')
 		{
 			bca = false;
 		}
 
-		if (SONG.song == 'Stress')
+		if (SONG.song.toLowerCase() == 'Stress')
 		{
 			bca = false;
 		}
@@ -839,6 +839,9 @@ class PlayState extends MusicBeatState
 
 		if (SONG.song.toLowerCase() == 'stress')
 			gfVersion = 'pico-speaker';
+
+		if (SONG.player1 == 'bf-holding-gf' && bca == true)
+			gfVersion = 'speakers';
 
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);

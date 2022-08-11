@@ -12,6 +12,7 @@ var Boyguy:Int = 0;
 class CharSelectMenu extends MusicBeatState
 {
 	var bf:FlxSprite;
+    var bfandgf:FlxSprite;
     var tankman:FlxSprite;
     var pico:FlxSprite;
     public static var bfver:String = 'bf';
@@ -47,6 +48,12 @@ class CharSelectMenu extends MusicBeatState
             bf.screenCenter();
             bf.flipX = true;
 
+            bfandgf = new FlxSprite(0, 0);
+			bfandgf.frames = Paths.getSparrowAtlas('characters/bfAndGF', 'shared');
+			bfandgf.animation.addByPrefix('idle', 'BF idle dance w gf', 24, false);
+			add(bfandgf);
+            bfandgf.screenCenter();
+            bfandgf.flipX = true;
 
             pico = new FlxSprite(0, 0);
 			pico.frames = Paths.getSparrowAtlas('characters/Pico_FNF_assetss', 'shared');
@@ -63,6 +70,7 @@ class CharSelectMenu extends MusicBeatState
             tankman.flipX = false;
 
             bf.animation.play('idle', true);
+            bfandgf.animation.play('idle', true);
             pico.animation.play('idle', true);
             tankman.animation.play('idle', true);
             
@@ -76,6 +84,7 @@ class CharSelectMenu extends MusicBeatState
     
             case 0:
                 bf.alpha = 1;
+                bfandgf.alpha = 0;
                 pico.alpha = 0;
                 tankman.alpha = 0;
                 bfver = 'bf';
@@ -83,17 +92,28 @@ class CharSelectMenu extends MusicBeatState
 			    FlxG.save.flush();
 
             case 1:
+                bfandgf.alpha = 1;
+                bf.alpha = 0;
+                pico.alpha = 0;
+                tankman.alpha = 0;
+                bfver = 'bf-holding-gf';
+                FlxG.save.data.Boyguy = Boyguy;
+			    FlxG.save.flush();
+
+            case 2:
                 pico.alpha = 1;
                 bf.alpha = 0;
+                bfandgf.alpha = 0;
                 tankman.alpha = 0;
                 bfver = 'pico';
                 FlxG.save.data.Boyguy = Boyguy;
 			    FlxG.save.flush();
 
-            case 2:
+            case 3:
                 tankman.alpha = 1;
                 pico.alpha = 0;
                 bf.alpha = 0;
+                bfandgf.alpha = 0;
                 bfver = 'tankman';
                 FlxG.save.data.Boyguy = Boyguy;
 			    FlxG.save.flush();
@@ -105,11 +125,19 @@ class CharSelectMenu extends MusicBeatState
 
     if(FlxG.keys.justPressed.RIGHT) {
         FlxG.sound.play(Paths.sound('scrollMenu'));
+        bf.animation.play('idle', true);
+        bfandgf.animation.play('idle', true);
+        pico.animation.play('idle', true);
+        tankman.animation.play('idle', true);
         Boyguy += 1;
         select();
     }
     if(FlxG.keys.justPressed.LEFT) {
         FlxG.sound.play(Paths.sound('scrollMenu'));
+        bf.animation.play('idle', true);
+        bfandgf.animation.play('idle', true);
+        pico.animation.play('idle', true);
+        tankman.animation.play('idle', true);
         Boyguy -= 1;
         select();
     }
