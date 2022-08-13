@@ -156,6 +156,7 @@ class PlayState extends MusicBeatState
 
 	// some stuff for the txt lol
 	public var misses:Int = 0;
+	public var cb:Int = 0;
 	public var scoreTxt:FlxText;
 	public var SETxt:FlxText;
 	public var rateingCounter:FlxText;
@@ -1938,30 +1939,30 @@ class PlayState extends MusicBeatState
 		if (PreferencesMenu.getPref('cst'))
 		{
 			if (misses == 0)
-				scoreTxt.text = 'Score:' + songScore  + ' | Misses:' + misses + ' | FC'; // score misss and combo info
+				scoreTxt.text = 'Score:' + songScore  + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | FC'; // score misss and combo info
 			else if (misses > 0 && misses < 5)
-				scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | NFC'; // nearly fc
+				scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | NFC'; // nearly fc
 			else if (misses > 4 && misses < 10)
-				scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | NB';
+				scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | NB';
 			else if (misses > 9 && misses < 20)
-				scoreTxt.text = 'Score:' + songScore  + ' | Misses:' + misses + ' | PGBNTB'; // PRETTY GOOD BUT NOT THE BEST
+				scoreTxt.text = 'Score:' + songScore  + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | PGBNTB'; // PRETTY GOOD BUT NOT THE BEST
 			else
-				scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | F'; // fail
+				scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | F'; // fail
 
 			if (PreferencesMenu.getPref('ops'))
 				if (misses == 0)
-					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | FC' + ' | ' + SONG.player2 + 's Score:' +
+					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | FC' + ' | ' + SONG.player2 + 's Score:' +
 						dadScore; // score and misss info
 				else if (misses > 0 && misses < 5)
-					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | NFC' + ' | ' + SONG.player2 + 's Score:'
+					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | NFC' + ' | ' + SONG.player2 + 's Score:'
 						+ dadScore; // nearly fc
 				else if (misses > 4 && misses < 10)
-					scoreTxt.text = 'Score:' + songScore + combo + ' | Misses:' + misses + ' | ' + SONG.player2 + 's Score:' + dadScore;
+					scoreTxt.text = 'Score:' + songScore + combo + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | ' + SONG.player2 + 's Score:' + dadScore;
 				else if (misses > 9 && misses < 20)
-					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | PGBNTB' + ' | ' + SONG.player2 + 's Score:'
+					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | PGBNTB' + ' | ' + SONG.player2 + 's Score:'
 						+ dadScore; // PRETTY GOOD BUT NOT THE BEST
 				else
-					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' | F' + ' | ' + SONG.player2 + 's Score:' +
+					scoreTxt.text = 'Score:' + songScore + ' | Misses:' + misses + ' Combo Breaks:' + cb + ' | F' + ' | ' + SONG.player2 + 's Score:' +
 						dadScore; // fail
 		}
 
@@ -2319,12 +2320,14 @@ if (PreferencesMenu.getPref('dm'))
 				{
 					if (daNote.tooLate || !daNote.wasGoodHit)
 					{
+					if(combo > 9){
+						cb += 1;
+					}
 						health -= 0.0475;
 						combo = 0;
 						misses += 1;
 						songScore -= 10;
 						vocals.volume = 0;
-					}
 
 					daNote.active = false;
 					daNote.visible = false;
@@ -2333,7 +2336,8 @@ if (PreferencesMenu.getPref('dm'))
 					notes.remove(daNote, true);
 					daNote.destroy();
 				}
-			});
+			}
+		});
 
 			if (!inCutscene)
 				keyShit();
@@ -2869,6 +2873,9 @@ if (PreferencesMenu.getPref('dm'))
 				noteMiss(3);
 			boyfriend.playAnim('singRIGHTmiss', true);
 
+			if(combo > 9){
+				cb += 1;
+			}
 			misses += 1;
 			combo = 0;
 			songScore -= 20;
