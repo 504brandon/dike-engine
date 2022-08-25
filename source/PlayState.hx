@@ -2326,7 +2326,7 @@ if (PreferencesMenu.getPref('dm'))
 					}
 						
 					if (PreferencesMenu.getPref('smoothie')){
-						smoothHealth(-0.0475)	
+						smoothHealth(-0.0475);
 					}
 					else {
 						health -= 0.0475;
