@@ -1,0 +1,15 @@
+{
+    "merge": [
+    	{
+            "target": "weeks",
+            "payload": [
+                {
+                    "name": "Example Week",
+                    "songs": ["Example"],
+                    "difficulties": ["Easy", "Normal", "Hard"],
+                    "characters": ["dad", "bf", "gf"]
+                }
+            ]
+	    }
+    ]
+}

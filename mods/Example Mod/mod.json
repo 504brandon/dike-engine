@@ -1,0 +1,14 @@
+{
+	"title":"Example Mod",
+	"description":"Example Mod for all your modding needs!",
+	"homepage": "idfk",
+	"contributors": [
+		{
+			"name": "Jo Mama",
+			"role": "Developer"
+		}
+	],
+	"api_version":"0.1.0",
+	"mod_version":"1.0.0",
+	"license":"Who gives a shit, this is fnf"
+}

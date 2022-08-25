@@ -1,0 +1,16 @@
+{
+    "merge": [
+    	{
+            "target": "songs",
+            "payload": [
+                {
+                    "name": "Example",
+                    "icon": "example",
+                    "difficulties": ["Easy", "Normal", "Hard", "Alt"],
+                    "week": 8,
+                    "color": "#838383"
+                }
+            ]
+	    }
+    ]
+}
