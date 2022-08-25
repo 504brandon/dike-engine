@@ -2819,7 +2819,7 @@ if (PreferencesMenu.getPref('dm'))
 					
 	function smoothHealth(amount:Float) {
 		tweenHealth.cancel();
-		tweenHealth = FlxTween.num(health, health + amt, 0.1, {ease: FlxEase.cubeInOut}, function(v:Float)
+		tweenHealth = FlxTween.num(health, health + amount, 0.1, {ease: FlxEase.cubeInOut}, function(v:Float)
 			{
 				health = v;
 			});
