@@ -36,6 +36,7 @@ class PreferencesMenu extends Page
 		createPrefItem('events', 'events', true);
 		createPrefItem('ghost tapping', 'gt', true);
 		createPrefItem('downscroll', 'downscroll', false);
+		createPrefItem('smooth health', 'smoothie', true);
 		createPrefItem('winning icons', 'wi', false);
 		createPrefItem('vs online style', 'vos', false);
 		createPrefItem('Opponent score', 'ops', false);
@@ -90,6 +91,7 @@ class PreferencesMenu extends Page
 		preferenceCheck('censor-naughty', false);
 		preferenceCheck('cutsenses', true);
 		preferenceCheck('downscroll', false);
+		preferenceCheck('smoothie', true);
 		preferenceCheck('DEA', false);
 		preferenceCheck('rc', false);
 		preferenceCheck('cst', true);
