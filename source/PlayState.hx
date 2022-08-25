@@ -2907,14 +2907,15 @@ if (PreferencesMenu.getPref('dm'))
 				combo += 1;
 			}
 
-			if (note.noteData >= 0)
+			if (note.noteData >= 0) {
+				
 				if (PreferencesMenu.getPref('smoothie')) {
 					smoothHealth(0.023);
 				}
 				else {
 					health += 0.023;
 			     	}
-				else {
+				else if (!note.noteData >= 0){
 					health += 0.004;
 				}
 
