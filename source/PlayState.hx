@@ -2915,7 +2915,7 @@ if (PreferencesMenu.getPref('dm'))
 				else {
 					health += 0.023;
 			     	}
-				else if (!note.noteData >= 0){
+				else(!note.noteData == 0) {
 					health += 0.004;
 				}
 
