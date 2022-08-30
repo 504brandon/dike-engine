@@ -168,7 +168,6 @@ class PlayState extends MusicBeatState
 	public var shits:Int = 0;
 	public var oofs:Int = 0;
 	public var ver = "v" + Application.current.meta.get('version');
-	var tweenHealth:FlxTween;
 
 	var time:Float = 0;
 
@@ -2324,13 +2323,7 @@ if (PreferencesMenu.getPref('dm'))
 					if(combo > 9){
 						cb += 1;
 					}
-						
-					if (PreferencesMenu.getPref('smoothie')){
-						smoothHealth(-0.0475);
-					}
-					else {
 						health -= 0.0475;
-					}
 						combo = 0;
 						misses += 1;
 						songScore -= 10;
@@ -2816,14 +2809,6 @@ if (PreferencesMenu.getPref('dm'))
 			}
 		});
 	}
-					
-	function smoothHealth(amount:Float) {
-		tweenHealth.cancel();
-		tweenHealth = FlxTween.num(health, health + amount, 0.1, {ease: FlxEase.cubeInOut}, function(v:Float)
-			{
-				health = v;
-			});
-	}
 
 	function noteMiss(direction:Int = 1):Void
 	{
@@ -2907,16 +2892,10 @@ if (PreferencesMenu.getPref('dm'))
 				combo += 1;
 			}
 
-			if (note.noteData >= 0) {
-				
-				if (PreferencesMenu.getPref('smoothie')) {
-					smoothHealth(0.023);
-				}
-				else {
-					health += 0.023;
-			     	}
-			}
-
+			if (note.noteData >= 0)
+				health += 0.023;
+			else
+				health += 0.004;
 
 			switch (note.noteData)
 			{
