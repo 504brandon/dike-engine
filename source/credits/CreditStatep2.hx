@@ -28,7 +28,7 @@ class CreditStatep2 extends MusicBeatState
 
 		CreditTxt = new FlxText("Extrea Credits
 		\nKadeDev: the extenction for vidios
-		\nLeather128: helped code ALOT
+		\nLeather128: helped code ALOT and made the credits and achevemant art for the menu
 		\nfunni thing so leather shows up i guess");
 		CreditTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		CreditTxt.x = 434.7;
