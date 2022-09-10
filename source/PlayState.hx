@@ -2277,8 +2277,14 @@ if (PreferencesMenu.getPref('dm'))
 
 					dad.holdTimer = 0;
 
+
 					if (SONG.needsVoices)
 						vocals.volume = 1;
+
+						daNote.kill();
+						notes.remove(daNote, true);
+						daNote.destroy();
+						dadScore += 100;
 
 					if (ModifiersMenu.getPref('hpd'))
 						health -= 0.01;
