@@ -167,7 +167,7 @@ class PlayState extends MusicBeatState
 	public var goods:Int = 0;
 	public var shits:Int = 0;
 	public var oofs:Int = 0;
-	public var ver = "v" + Application.current.meta.get('version');
+	public var ver = "v" + CoolUtil.coolTextFile(Paths.txt('version'));
 
 	var time:Float = 0;
 
@@ -282,6 +282,7 @@ class PlayState extends MusicBeatState
 			SONG.player2 = oldP1;
 			SONG.player1 = oldP2;
 		}
+
 
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
@@ -1910,6 +1911,7 @@ class PlayState extends MusicBeatState
 		}
 
 		super.update(elapsed);
+
 		if (PreferencesMenu.getPref('vos'))
 			{
 				if (FlxG.keys.justPressed.ANY)
@@ -2277,11 +2279,6 @@ if (PreferencesMenu.getPref('dm'))
 
 					if (SONG.needsVoices)
 						vocals.volume = 1;
-
-					daNote.kill();
-					notes.remove(daNote, true);
-					daNote.destroy();
-					dadScore += 100;
 
 					if (ModifiersMenu.getPref('hpd'))
 						health -= 0.01;
